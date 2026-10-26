@@ -1,0 +1,607 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Meet Our Developers — OurTeam.css
+   Premium Horizontal Profile Layout | School ERP Brand Theme
+   Brand: --primary-red #D90000 | --dark-black #111111 | --white-bg #FFFFFF
+          --primary-bg #F1F1F1  | --subtle-pink #FCE8E8 | --body-text #343434
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Section Wrapper ──────────────────────────────────────────────────────── */
+.team-section {
+  background-color: #FAFAFA;
+  padding: 64px 0 72px;
+  position: relative;
+  scroll-margin-top: 80px;
+  overflow-x: clip; /* Bound subtle diagonal floating without clipping shadows */
+}
+
+.dev-main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Section Header ────────────────────────────────────────────────────────── */
+.team-header {
+  margin-bottom: 44px;
+}
+
+.dev-section-label {
+  display: inline-block;
+  font-size: 0.75rem; /* ≈ 12px */
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary-red, #D90000);
+  margin-bottom: 8px;
+}
+
+.team-title {
+  font-size: clamp(2rem, 3vw, 2.5rem); /* ~32–40px */
+  font-weight: 800;
+  color: var(--dark-black, #111111);
+  line-height: 1.2;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+
+.team-subtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  color: #666666;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Two Developer Horizontal Rows Container ───────────────────────────────── */
+.dev-profiles-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Subtle Divider Between the Two Profiles */
+.dev-row-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #E8E8E8 20%,
+    #E8E8E8 80%,
+    transparent 100%
+  );
+  margin: 44px 0;
+}
+
+/* ── Individual Developer Horizontal Row (Compact Layout) ──────────────────── */
+.dev-profile-row {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LEFT SIDE: PORTRAIT WITH PINK CIRCLE & DIAGONAL FLOATING (COMPACT)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.dev-visual-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Diagonal Floating Container (~290x320px) */
+.dev-avatar-stage {
+  position: relative;
+  width: 290px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+/* Developer 1 (Om) Diagonal Float */
+.dev-float-diagonal-om {
+  animation: floatDiagonalOm 5s ease-in-out infinite;
+}
+
+/* Developer 2 (Kushagra) Diagonal Float with slight offset */
+.dev-float-diagonal-kushagra {
+  animation: floatDiagonalKushagra 5.3s ease-in-out 0.8s infinite;
+}
+
+@keyframes floatDiagonalOm {
+  0% {
+    transform: translate(-3px, -2px);
+  }
+  50% {
+    transform: translate(3px, 2px);
+  }
+  100% {
+    transform: translate(-3px, -2px);
+  }
+}
+
+@keyframes floatDiagonalKushagra {
+  0% {
+    transform: translate(3px, -2px);
+  }
+  50% {
+    transform: translate(-3px, 2px);
+  }
+  100% {
+    transform: translate(3px, -2px);
+  }
+}
+
+/* Pale-Pink Circular Background (#FCE8E8) */
+.dev-pink-backdrop-circle {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #FCE8E8;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Thin Red Circular Accent Outline */
+.dev-red-accent-circle {
+  position: absolute;
+  width: 272px;
+  height: 272px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(217, 0, 0, 0.35);
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Decorative Dots Accent */
+.dev-decorative-dots {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 3.5px);
+  gap: 5px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dev-decorative-dots span {
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 50%;
+  background-color: rgba(217, 0, 0, 0.45);
+}
+
+/* Modern Framed Portrait Cutout (~220x290px) */
+.dev-portrait-card {
+  position: relative;
+  z-index: 2;
+  width: 220px;
+  height: 290px;
+  border-radius: 110px 110px 20px 20px; /* Arched portrait cutout */
+  overflow: hidden;
+  background-color: #FFFFFF;
+  border: 3px solid #FFFFFF;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.09),
+    0 3px 8px rgba(217, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dev-portrait-card:hover {
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(217, 0, 0, 0.10);
+}
+
+.dev-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 14%;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RIGHT SIDE: INTRODUCTION & PROFESSIONAL DETAILS (COMPACT)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.dev-details-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Designation Badge */
+.dev-badge-wrap {
+  margin-bottom: 6px;
+}
+
+.dev-designation-badge {
+  display: inline-block;
+  font-size: 0.78rem; /* ~12.5px bold uppercase */
+  font-weight: 800;
+  color: var(--primary-red, #D90000);
+  background-color: #FCE8E8;
+  border: 1px solid rgba(217, 0, 0, 0.18);
+  border-radius: 5px;
+  padding: 4px 11px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+/* Developer Name (~28–34px) */
+.dev-person-name {
+  font-size: clamp(1.75rem, 2.5vw, 2.15rem);
+  font-weight: 800;
+  color: var(--dark-black, #111111);
+  line-height: 1.2;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.3px;
+}
+
+/* Introduction Paragraph (~15-16px, tighter line height) */
+.dev-person-intro {
+  font-size: 0.96rem; /* ~15.5px */
+  color: #343434;
+  line-height: 1.62;
+  margin: 0 0 18px 0;
+  max-width: 680px;
+}
+
+/* ── Three Compact Detail Cards in a Single Row on Desktop ─────────────────── */
+.dev-info-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 680px;
+  margin-bottom: 20px;
+}
+
+.dev-compact-card {
+  background-color: #FFFFFF;
+  border: 1px solid #EDEDED;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.dev-compact-card:hover {
+  border-color: rgba(217, 0, 0, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 0, 0, 0.06);
+}
+
+.dev-card-top {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 2px;
+}
+
+/* Small red icon with pale-pink background */
+.dev-card-icon-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  background-color: #FCE8E8;
+  color: var(--primary-red, #D90000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dev-card-icon-box svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Detail card labels: ~11.5px bold red uppercase */
+.dev-card-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--primary-red, #D90000);
+}
+
+/* Detail card content: ~14.5px / 12.5px */
+.dev-card-heading {
+  font-size: 0.95rem; /* ~15px */
+  font-weight: 700;
+  color: var(--dark-black, #111111);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.dev-card-subtext {
+  font-size: 0.8rem; /* ~12.8px */
+  color: #666666;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ── Portfolio CTA Button (Compact) ───────────────────────────────────────── */
+.dev-action-row {
+  margin-top: 2px;
+}
+
+.dev-view-portfolio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-red, #D90000);
+  color: #FFFFFF !important;
+  font-size: 0.9rem; /* ~14.5px */
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(217, 0, 0, 0.22);
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.dev-view-portfolio-btn:hover {
+  background-color: #B00000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(217, 0, 0, 0.32);
+  color: #FFFFFF;
+}
+
+.dev-btn-link-icon {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.25s ease;
+}
+
+.dev-view-portfolio-btn:hover .dev-btn-link-icon {
+  transform: translate(2px, -2px);
+}
+
+/* ── Toast Notification for Inactive / Updating URLs ──────────────────────── */
+.dev-toast-alert {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  animation: toastSlideUp 0.35s ease-out;
+  max-width: 440px;
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dev-toast-body {
+  background: #111111;
+  color: #FFFFFF;
+  border-left: 4px solid var(--primary-red, #D90000);
+  padding: 14px 18px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dev-toast-badge-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.dev-toast-msg {
+  font-size: 0.92rem;
+  color: #F1F1F1;
+  margin: 0;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.dev-toast-dismiss {
+  background: transparent;
+  border: none;
+  color: #AAAAAA;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.dev-toast-dismiss:hover {
+  color: #FFFFFF;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Laptop (<= 1100px) */
+@media (max-width: 1100px) {
+  .dev-profile-row {
+    grid-template-columns: 290px 1fr;
+    gap: 32px;
+  }
+
+  .dev-avatar-stage {
+    width: 270px;
+    height: 300px;
+  }
+
+  .dev-pink-backdrop-circle {
+    width: 230px;
+    height: 230px;
+  }
+
+  .dev-red-accent-circle {
+    width: 250px;
+    height: 250px;
+  }
+
+  .dev-portrait-card {
+    width: 200px;
+    height: 270px;
+  }
+
+  .dev-person-name {
+    font-size: 1.85rem;
+  }
+}
+
+/* Tablet (<= 920px) — Stack Image Above Introduction */
+@media (max-width: 920px) {
+  .team-section {
+    padding: 50px 0 60px;
+  }
+
+  .team-header {
+    margin-bottom: 36px;
+  }
+
+  .dev-profile-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .dev-visual-col {
+    justify-content: center;
+  }
+
+  .dev-details-col {
+    align-items: center;
+    text-align: center;
+  }
+
+  .dev-person-intro {
+    max-width: 580px;
+  }
+
+  .dev-info-cards-row {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 580px;
+    margin: 0 auto 20px;
+  }
+
+  .dev-compact-card {
+    text-align: left;
+  }
+
+  .dev-row-divider {
+    margin: 36px 0;
+  }
+}
+
+/* Mobile (<= 640px) */
+@media (max-width: 640px) {
+  .team-section {
+    padding: 44px 0 50px;
+  }
+
+  .team-header {
+    margin-bottom: 28px;
+  }
+
+  .dev-avatar-stage {
+    width: 250px;
+    height: 280px;
+  }
+
+  .dev-pink-backdrop-circle {
+    width: 210px;
+    height: 210px;
+  }
+
+  .dev-red-accent-circle {
+    width: 228px;
+    height: 228px;
+  }
+
+  .dev-portrait-card {
+    width: 190px;
+    height: 250px;
+    border-radius: 95px 95px 18px 18px;
+  }
+
+  .dev-person-name {
+    font-size: 1.65rem;
+  }
+
+  .dev-person-intro {
+    font-size: 0.92rem;
+    line-height: 1.58;
+    margin-bottom: 18px;
+  }
+
+  .dev-info-cards-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    max-width: 340px;
+    margin: 0 auto 20px;
+  }
+
+  .dev-compact-card {
+    padding: 11px 13px;
+  }
+
+  .dev-view-portfolio-btn {
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+    padding: 10px 18px;
+    font-size: 0.88rem;
+  }
+
+  .dev-toast-alert {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .dev-float-diagonal-om,
+  .dev-float-diagonal-kushagra,
+  .dev-portrait-card,
+  .dev-compact-card,
+  .dev-view-portfolio-btn {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

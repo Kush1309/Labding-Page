@@ -1,0 +1,115 @@
+.top-performers-section {
+  background-color: var(--primary-bg);
+}
+
+.performers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.performer-card {
+  background-color: var(--white-bg);
+  border-radius: 12px;
+  padding: 35px 25px;
+  text-align: center;
+  border: 2px solid var(--light-border);
+  transition: all 0.3s ease;
+}
+
+.performer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-red);
+}
+
+.performer-avatar {
+  margin-bottom: 20px;
+}
+
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-bg);
+  font-size: 2rem;
+  font-weight: 700;
+  border: 4px solid var(--white-bg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.performer-name {
+  font-size: 1.2rem;
+  color: var(--dark-black);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.performer-class {
+  color: var(--muted-text);
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.performer-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--primary-bg);
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.score-label {
+  color: var(--muted-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.score-value {
+  color: var(--primary-red);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.performers-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  margin-top: 40px;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .performers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+}
+
+@media (max-width: 640px) {
+  .performers-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .performer-card {
+    padding: 30px 20px;
+  }
+
+  .avatar-placeholder {
+    width: 90px;
+    height: 90px;
+    font-size: 1.8rem;
+  }
+}

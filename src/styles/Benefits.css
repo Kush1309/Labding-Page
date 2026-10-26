@@ -1,0 +1,417 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Benefits Section  — Benefits.css
+   Horizontal accordion-style image carousel — WHITE THEME
+   Brand: --primary-red #D90000 | --dark-black #111111 | --white-bg #FFFFFF
+          --primary-bg #F1F1F1  | --light-border #DEDEDE | --muted-text #666
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── CSS tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --ben-transition:      0.55s;
+  --ben-ease:            cubic-bezier(0.4, 0, 0.2, 1);
+
+  --ben-card-height:     520px;
+  --ben-card-inactive-w: 74px;
+  --ben-card-active-w:   1fr;
+  --ben-gap:             10px;
+  --ben-radius:          18px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION WRAPPER — clean white, matches the rest of the site
+   ═══════════════════════════════════════════════════════════════════════════ */
+.benefits-section {
+  position: relative;
+  background-color: var(--white-bg);            /* ← white, not dark */
+  padding: 90px 0 72px;
+  overflow: hidden;
+}
+
+/* Subtle light-grey gradient stripe at the very bottom to ease into next section */
+.benefits-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--primary-bg));
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADING BLOCK
+   ═══════════════════════════════════════════════════════════════════════════ */
+.benefits-header {
+  max-width: 780px;
+  margin: 0 auto 52px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+/* Tiny red uppercase label above heading */
+.benefits-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--primary-red);
+  margin-bottom: 16px;
+}
+
+/* Main heading — dark text on white */
+.benefits-title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--dark-black);                     /* ← dark, not white */
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.benefits-title-accent {
+  color: var(--primary-red);                    /* ← red accent word */
+}
+
+/* Subtitle — muted grey */
+.benefits-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--muted-text);                     /* ← grey, not white */
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+/* Short red underline */
+.benefits-underline {
+  width: 52px;
+  height: 3px;
+  background: var(--primary-red);
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CAROUSEL TRACK  (CSS-Grid accordion)
+   Each inactive card is fixed-width; the :has() rules expand the active one.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.benefits-carousel {
+  display: grid;
+  grid-template-columns: repeat(8, var(--ben-card-inactive-w));
+  gap: var(--ben-gap);
+  height: var(--ben-card-height);
+  padding: 0 40px;
+  margin: 0 auto;
+  max-width: 1420px;
+  transition: grid-template-columns var(--ben-transition) var(--ben-ease);
+}
+
+/* Active-card column expansion — one rule per position */
+.benefits-carousel:has(.ben-card:nth-child(1).ben-card--active) { grid-template-columns: var(--ben-card-active-w) repeat(7, var(--ben-card-inactive-w)); }
+.benefits-carousel:has(.ben-card:nth-child(2).ben-card--active) { grid-template-columns: var(--ben-card-inactive-w) var(--ben-card-active-w) repeat(6, var(--ben-card-inactive-w)); }
+.benefits-carousel:has(.ben-card:nth-child(3).ben-card--active) { grid-template-columns: repeat(2, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(5, var(--ben-card-inactive-w)); }
+.benefits-carousel:has(.ben-card:nth-child(4).ben-card--active) { grid-template-columns: repeat(3, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(4, var(--ben-card-inactive-w)); }
+.benefits-carousel:has(.ben-card:nth-child(5).ben-card--active) { grid-template-columns: repeat(4, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(3, var(--ben-card-inactive-w)); }
+.benefits-carousel:has(.ben-card:nth-child(6).ben-card--active) { grid-template-columns: repeat(5, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(2, var(--ben-card-inactive-w)); }
+.benefits-carousel:has(.ben-card:nth-child(7).ben-card--active) { grid-template-columns: repeat(6, var(--ben-card-inactive-w)) var(--ben-card-active-w) var(--ben-card-inactive-w); }
+.benefits-carousel:has(.ben-card:nth-child(8).ben-card--active) { grid-template-columns: repeat(7, var(--ben-card-inactive-w)) var(--ben-card-active-w); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INDIVIDUAL CARD
+   ═══════════════════════════════════════════════════════════════════════════ */
+.ben-card {
+  position: relative;
+  height: 100%;
+  padding: 0;
+  background: #e8e8e8;                          /* subtle grey fallback */
+  border-radius: var(--ben-radius);
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid transparent;
+  transition:
+    border-color  var(--ben-transition) var(--ben-ease),
+    box-shadow    var(--ben-transition) var(--ben-ease);
+  flex-shrink: 0;
+}
+
+/* Active — thin red border + premium shadow */
+.ben-card--active {
+  border-color: rgba(217, 0, 0, 0.50);
+  box-shadow:
+    0 0 0 1px rgba(217, 0, 0, 0.18),
+    0 10px 40px rgba(0, 0, 0, 0.18);
+  cursor: default;
+}
+
+/* Inactive hover — light grey border hint */
+.ben-card--inactive:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+}
+
+/* Keyboard focus ring */
+.ben-card:focus-visible {
+  outline: 3px solid var(--primary-red);
+  outline-offset: 3px;
+}
+
+/* ── Card photo ───────────────────────────────────────────────────────────── */
+.ben-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--ben-transition) var(--ben-ease);
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Slight scale on active — feels alive */
+.ben-card--active .ben-card__img {
+  transform: scale(1.03);
+}
+
+/* Micro-zoom on hover of inactive card */
+.ben-card--inactive:hover .ben-card__img {
+  transform: scale(1.06);
+}
+
+/* ── Overlay — ONLY on card images for text readability ──────────────────── */
+/* The section itself stays white — only the photo inside gets a dark vignette */
+.ben-card__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background var(--ben-transition) var(--ben-ease);
+}
+
+/* Active card — rich gradient so white text is legible */
+.ben-card--active .ben-card__overlay {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.48) 42%,
+    rgba(0, 0, 0, 0.10) 100%
+  );
+}
+
+/* Inactive card — moderate dimming so thumbnails read as "inactive" */
+.ben-card--inactive .ben-card__overlay {
+  background: rgba(0, 0, 0, 0.42);
+}
+
+/* Brighten on inactive hover */
+.ben-card--inactive:hover .ben-card__overlay {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+/* ── Narrow vertical number label (inactive cards) ───────────────────────── */
+.ben-card__narrow-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+  pointer-events: none;
+}
+
+.ben-card__narrow-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.80);
+  letter-spacing: 1.5px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+/* ── Active card content (title + desc overlaid on photo) ────────────────── */
+.ben-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  pointer-events: none;
+
+  /* Invisible by default — slides up when active */
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity   var(--ben-transition) var(--ben-ease),
+    transform var(--ben-transition) var(--ben-ease);
+}
+
+.ben-card__content--show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Red numbered badge */
+.ben-card__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: var(--primary-red);
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+
+/* White text on active photo */
+.ben-card__title {
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  text-align: left;
+  margin: 0;
+}
+
+.ben-card__desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.84);
+  line-height: 1.65;
+  text-align: left;
+  margin: 0;
+  max-width: 420px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DOT PROGRESS INDICATORS — adapted to white background
+   ═══════════════════════════════════════════════════════════════════════════ */
+.benefits-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.benefits-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--light-border);              /* ← grey on white bg */
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background     0.35s var(--ben-ease),
+    width          0.35s var(--ben-ease),
+    border-radius  0.35s var(--ben-ease);
+  flex-shrink: 0;
+}
+
+.benefits-dot--active {
+  background: var(--primary-red);
+  width: 28px;
+  border-radius: 4px;
+}
+
+.benefits-dot:hover:not(.benefits-dot--active) {
+  background: #bbb;
+}
+
+.benefits-dot:focus-visible {
+  outline: 2px solid var(--primary-red);
+  outline-offset: 3px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Large desktop — no changes, defaults work */
+
+/* Tablet landscape */
+@media (max-width: 1200px) {
+  :root {
+    --ben-card-height:     460px;
+    --ben-card-inactive-w: 62px;
+    --ben-gap: 8px;
+  }
+  .benefits-carousel { padding: 0 24px; }
+}
+
+/* Tablet portrait */
+@media (max-width: 900px) {
+  :root {
+    --ben-card-height:     400px;
+    --ben-card-inactive-w: 52px;
+    --ben-gap: 7px;
+  }
+  .benefits-section   { padding: 70px 0 56px; }
+  .benefits-header    { margin-bottom: 38px; }
+  .benefits-carousel  { padding: 0 16px; overflow-x: auto; }
+  .ben-card__desc     { display: none; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  :root {
+    --ben-card-height:     340px;
+    --ben-card-inactive-w: 40px;
+    --ben-gap: 6px;
+    --ben-radius: 14px;
+  }
+
+  .benefits-section { padding: 56px 0 44px; }
+  .benefits-header  { margin-bottom: 28px; }
+
+  .benefits-carousel { padding: 0 10px; }
+
+  .ben-card__content { padding: 18px 14px 16px; gap: 7px; }
+  .ben-card__title   { font-size: 0.97rem; }
+  .ben-card__desc    { display: none; }
+
+  .ben-card__num {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    font-size: 0.68rem;
+  }
+
+  /* Column rules need !important to override the desktop ones on mobile */
+  .benefits-carousel:has(.ben-card:nth-child(1).ben-card--active) { grid-template-columns: var(--ben-card-active-w) repeat(7, var(--ben-card-inactive-w)) !important; }
+  .benefits-carousel:has(.ben-card:nth-child(2).ben-card--active) { grid-template-columns: var(--ben-card-inactive-w) var(--ben-card-active-w) repeat(6, var(--ben-card-inactive-w)) !important; }
+  .benefits-carousel:has(.ben-card:nth-child(3).ben-card--active) { grid-template-columns: repeat(2, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(5, var(--ben-card-inactive-w)) !important; }
+  .benefits-carousel:has(.ben-card:nth-child(4).ben-card--active) { grid-template-columns: repeat(3, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(4, var(--ben-card-inactive-w)) !important; }
+  .benefits-carousel:has(.ben-card:nth-child(5).ben-card--active) { grid-template-columns: repeat(4, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(3, var(--ben-card-inactive-w)) !important; }
+  .benefits-carousel:has(.ben-card:nth-child(6).ben-card--active) { grid-template-columns: repeat(5, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(2, var(--ben-card-inactive-w)) !important; }
+  .benefits-carousel:has(.ben-card:nth-child(7).ben-card--active) { grid-template-columns: repeat(6, var(--ben-card-inactive-w)) var(--ben-card-active-w) var(--ben-card-inactive-w) !important; }
+  .benefits-carousel:has(.ben-card:nth-child(8).ben-card--active) { grid-template-columns: repeat(7, var(--ben-card-inactive-w)) var(--ben-card-active-w) !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY — reduced motion
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .ben-card,
+  .ben-card__img,
+  .ben-card__content,
+  .ben-card__overlay,
+  .benefits-dot,
+  .benefits-carousel {
+    transition: none !important;
+    animation:  none !important;
+  }
+}

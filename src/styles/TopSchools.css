@@ -1,0 +1,362 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Top Schools Section  — TopSchools.css
+   Theme: --primary-red #D90000 | --dark-black #111111 | --white-bg #FFFFFF
+          --primary-bg #F1F1F1  | --light-border #DEDEDE | --muted-text #666666
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── CSS custom property: tweak this to change carousel speed globally ────── */
+:root {
+  --carousel-speed: 40s;
+}
+
+/* ── Section wrapper ──────────────────────────────────────────────────────── */
+.top-schools-section {
+  background-color: var(--white-bg);
+  padding: 90px 0 70px;
+  overflow: hidden; /* critical — prevents horizontal page scroll */
+}
+
+/* Constrained-width inner wrapper (not full-bleed, just centred heading/note) */
+.ts-container {
+  width: 100%;
+  padding: 0 24px;
+}
+
+/* ── Decorative partner label ─────────────────────────────────────────────── */
+.partner-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 28px;
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.partner-line {
+  flex: 0 0 60px;
+  height: 2px;
+  background: var(--primary-red);
+  border-radius: 2px;
+  display: block;
+}
+
+.partner-text {
+  color: var(--primary-red);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── Section heading ──────────────────────────────────────────────────────── */
+.section-header {
+  margin-bottom: 56px;
+  text-align: center;
+  animation: fadeInUp 0.7s 0.1s ease-out both;
+}
+
+.section-header h2 {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.title-black { color: var(--dark-black); }
+.title-red   { color: var(--primary-red); }
+
+.section-description {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: var(--muted-text);
+  line-height: 1.65;
+}
+
+/* ── Carousel container — clips the track + hosts the fade masks ──────────── */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 24px 0 28px;
+  cursor: default;
+}
+
+/* Soft edge fade-out masks (left & right) */
+.carousel-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carousel-fade--left {
+  left: 0;
+  background: linear-gradient(to right, var(--white-bg) 0%, transparent 100%);
+}
+
+.carousel-fade--right {
+  right: 0;
+  background: linear-gradient(to left, var(--white-bg) 0%, transparent 100%);
+}
+
+/* ── Carousel track — infinite marquee ───────────────────────────────────── */
+/*
+   Strategy: the loopedSchools array is exactly 2× the original schools array.
+   The @keyframes moves the track by exactly 50% (= 1 full original set).
+   When the animation resets to 0%, the visible content looks identical
+   → perfectly seamless loop with zero JavaScript timers.
+*/
+.carousel-track {
+  display: flex;
+  gap: 28px;
+  width: max-content;          /* shrink-wraps all cards naturally */
+  animation: carousel-scroll var(--carousel-speed) linear infinite;
+
+  /* GPU compositing hints */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@keyframes carousel-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* exactly one copy-width */
+}
+
+/* Pause on hover (desktop) — JS also sets this via ref for reliability */
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+/* ── Individual school card ───────────────────────────────────────────────── */
+.school-card {
+  flex: 0 0 300px;          /* fixed width — keeps all cards identical */
+  background: var(--white-bg);
+  border-radius: 20px;
+  border: 1px solid var(--light-border);
+  box-shadow:
+    0 2px 8px  rgba(0, 0, 0, 0.06),
+    0 6px 20px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  transition:
+    border-color   0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow     0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform      0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+/* Active / hover — red border + premium shadow + lift */
+.school-card:hover {
+  border-color: var(--primary-red);
+  box-shadow:
+    0 4px 16px rgba(217, 0, 0, 0.14),
+    0 12px 36px rgba(217, 0, 0, 0.18);
+  transform: translateY(-7px);
+}
+
+/* ── School image area ────────────────────────────────────────────────────── */
+.school-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 195px;
+  overflow: hidden;
+  background: var(--primary-bg);
+  flex-shrink: 0;
+}
+
+/* Placeholder shown while image loads or if it fails */
+.school-image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+}
+
+.placeholder-gradient {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-red) 0%, #ff4444 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(217, 0, 0, 0.28);
+}
+
+.placeholder-initial {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Actual campus photo — covers the box */
+.school-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle zoom on hover */
+.school-card:hover .school-image {
+  transform: scale(1.07);
+}
+
+/* ── Card info area ───────────────────────────────────────────────────────── */
+.school-info {
+  padding: 22px 20px 20px;
+  text-align: center;
+  background: var(--white-bg);
+}
+
+.school-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark-black);
+  line-height: 1.3;
+  margin-bottom: 9px;
+  min-height: 44px;          /* keeps all cards the same height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.school-location {
+  color: var(--muted-text);
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.location-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ── Demo note ────────────────────────────────────────────────────────────── */
+.carousel-note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #aaa;
+  margin-top: 32px;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+
+/* Large desktop — ~5 cards visible (default 300px + 28px gap) */
+@media (max-width: 1400px) {
+  .school-card { flex: 0 0 280px; }
+}
+
+/* Tablet landscape ― ~3 cards */
+@media (max-width: 1024px) {
+  .top-schools-section { padding: 70px 0 55px; }
+  .school-card         { flex: 0 0 260px; }
+  .school-image-wrapper{ height: 175px; }
+  .carousel-track      { gap: 22px; }
+  .carousel-fade       { width: 80px; }
+}
+
+/* Tablet portrait ― 2–3 cards */
+@media (max-width: 768px) {
+  .top-schools-section { padding: 60px 0 48px; }
+  .section-header      { margin-bottom: 40px; }
+  .partner-line        { flex: 0 0 40px; }
+  .partner-text        { font-size: 0.75rem; letter-spacing: 2.5px; }
+  .school-card         { flex: 0 0 240px; }
+  .school-image-wrapper{ height: 160px; }
+  .carousel-track      { gap: 18px; }
+  .carousel-fade       { width: 60px; }
+}
+
+/* Mobile ― 1–2 cards */
+@media (max-width: 480px) {
+  .top-schools-section { padding: 50px 0 40px; }
+  .partner-label       { gap: 12px; margin-bottom: 20px; }
+  .partner-line        { flex: 0 0 28px; height: 1.5px; }
+  .partner-text        { font-size: 0.7rem; letter-spacing: 2px; }
+  .section-header      { margin-bottom: 32px; }
+  .school-card         { flex: 0 0 220px; }
+  .school-image-wrapper{ height: 145px; }
+  .carousel-track      { gap: 14px; }
+  .carousel-fade       { width: 40px; }
+  .placeholder-gradient{ width: 80px; height: 80px; }
+  .placeholder-initial { font-size: 2.2rem; }
+  /* Slightly faster on small screens for better feel */
+  :root                { --carousel-speed: 30s; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ACCESSIBILITY — respect reduced-motion
+   ═══════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track,
+  .school-card,
+  .school-image,
+  .partner-label,
+  .section-header {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .school-card:hover {
+    transform: none;
+  }
+
+  .school-card:hover .school-image {
+    transform: none;
+  }
+
+  /* Show all cards in a wrapping grid when motion is reduced */
+  .carousel-container {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-track {
+    flex-wrap: nowrap;
+  }
+
+  .school-card {
+    scroll-snap-align: start;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PERFORMANCE / MISC
+   ═══════════════════════════════════════════════════════ */
+.school-card,
+.school-image {
+  will-change: transform;
+}
+
+/* Fade-in utility used by heading/label */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
