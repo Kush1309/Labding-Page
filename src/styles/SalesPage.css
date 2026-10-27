@@ -1,0 +1,964 @@
+/* ==========================================================================
+   Sales Page Styles — School ERP
+   Theme: White, Red (#D90000), Black (#111111), Light Gray (#F1F1F1)
+   ========================================================================== */
+
+.sales-page {
+  background-color: var(--primary-bg);
+  min-height: 100vh;
+  color: var(--body-text);
+}
+
+/* --------------------------------------------------------------------------
+   Sub-Navigation / In-Page Anchor Bar
+   -------------------------------------------------------------------------- */
+.sales-subnav {
+  position: sticky;
+  top: 73px;
+  z-index: 99;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--light-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.sales-subnav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sales-subnav-container::-webkit-scrollbar {
+  display: none;
+}
+
+.sales-subnav-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted-text);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.sales-subnav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sales-subnav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--dark-black);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sales-subnav-btn:hover {
+  background-color: var(--primary-bg);
+  color: var(--primary-red);
+}
+
+.sales-subnav-btn.active {
+  background-color: var(--dark-black);
+  color: var(--white-bg);
+}
+
+.sales-subnav-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  background-color: rgba(217, 0, 0, 0.12);
+  color: var(--primary-red);
+  font-weight: 700;
+}
+
+.sales-subnav-btn.active .sales-subnav-num {
+  background-color: var(--primary-red);
+  color: var(--white-bg);
+}
+
+/* --------------------------------------------------------------------------
+   Section Common Utilities
+   -------------------------------------------------------------------------- */
+.sales-section-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 50px auto;
+}
+
+.sales-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background-color: #FEE2E2;
+  color: var(--primary-red);
+  border: 1px solid rgba(217, 0, 0, 0.2);
+  margin-bottom: 16px;
+}
+
+.sales-section-title {
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  color: var(--dark-black);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.sales-section-desc {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--muted-text);
+  line-height: 1.65;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   1. Sales Hero Section
+   -------------------------------------------------------------------------- */
+.sales-hero {
+  background-color: var(--white-bg);
+  border-bottom: 1px solid var(--light-border);
+  padding: 90px 0 70px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.sales-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(217, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sales-hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.sales-hero-headline {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--dark-black);
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.sales-hero-subtitle {
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  color: var(--muted-text);
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto 36px auto;
+}
+
+.sales-hero-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.btn-sales-primary {
+  background-color: var(--primary-red);
+  color: var(--white-bg);
+  padding: 16px 36px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(217, 0, 0, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-sales-primary:hover {
+  background-color: #B00000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(217, 0, 0, 0.35);
+}
+
+.btn-sales-secondary {
+  background-color: var(--white-bg);
+  color: var(--dark-black);
+  padding: 16px 36px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: 2px solid var(--dark-black);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+
+.btn-sales-secondary:hover {
+  background-color: var(--dark-black);
+  color: var(--white-bg);
+  transform: translateY(-2px);
+}
+
+/* Hero Key Indicators Pill Strip */
+.sales-hero-trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  background-color: var(--primary-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+
+.trust-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: var(--white-bg);
+  border: 1px solid var(--light-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-red);
+  flex-shrink: 0;
+}
+
+.trust-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dark-black);
+  margin-bottom: 2px;
+}
+
+.trust-sub {
+  font-size: 0.82rem;
+  color: var(--muted-text);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. School ERP Demo Section
+   -------------------------------------------------------------------------- */
+.sales-demo-section {
+  padding: 90px 0;
+  background-color: var(--white-bg);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.video-player-wrapper {
+  max-width: 1020px;
+  margin: 0 auto 50px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--dark-black);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--light-border);
+}
+
+.video-aspect-16-9 {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 ratio */
+  background-color: #0b0b0b;
+}
+
+.video-frame,
+.video-native-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+/* Polished Video Placeholder */
+.video-placeholder-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  color: #FFFFFF;
+  background: radial-gradient(circle at center, #1E1E1E 0%, #111111 80%);
+  background-image: 
+    radial-gradient(circle at center, rgba(217, 0, 0, 0.15) 0%, transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 36px 36px, 36px 36px;
+}
+
+.placeholder-play-ring {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: rgba(217, 0, 0, 0.2);
+  border: 2px solid rgba(217, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  box-shadow: 0 0 30px rgba(217, 0, 0, 0.35);
+  animation: pulsePlayRing 2.6s infinite ease-in-out;
+}
+
+@keyframes pulsePlayRing {
+  0% { transform: scale(1); box-shadow: 0 0 20px rgba(217, 0, 0, 0.3); }
+  50% { transform: scale(1.06); box-shadow: 0 0 35px rgba(217, 0, 0, 0.5); }
+  100% { transform: scale(1); box-shadow: 0 0 20px rgba(217, 0, 0, 0.3); }
+}
+
+.placeholder-play-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: var(--primary-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  padding-left: 4px;
+}
+
+.placeholder-tag {
+  display: inline-block;
+  padding: 4px 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #E5E5E5;
+  margin-bottom: 14px;
+}
+
+.placeholder-heading {
+  font-size: clamp(1.4rem, 3.2vw, 2rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.placeholder-subtext {
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  color: #A3A3A3;
+  max-width: 580px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.placeholder-config-note {
+  font-size: 0.78rem;
+  color: #737373;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.video-cta-bottom {
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 60px;
+}
+
+/* 4 Feature Highlights Grid */
+.demo-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.highlight-card {
+  background-color: var(--white-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 12px;
+  padding: 26px 22px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(217, 0, 0, 0.4);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.highlight-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background-color: #FEF2F2;
+  color: var(--primary-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border: 1px solid rgba(217, 0, 0, 0.15);
+}
+
+.highlight-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark-black);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.highlight-desc {
+  font-size: 0.92rem;
+  color: var(--muted-text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. Book a Meeting Section
+   -------------------------------------------------------------------------- */
+.sales-meeting-section {
+  padding: 90px 0;
+  background-color: var(--primary-bg);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.meeting-card-container {
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: var(--white-bg);
+  border-radius: 16px;
+  border: 1px solid var(--light-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+}
+
+.meeting-sidebar {
+  background-color: var(--dark-black);
+  color: #FFFFFF;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.meeting-sidebar-title {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.meeting-sidebar-desc {
+  color: #A3A3A3;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 30px;
+}
+
+.meeting-sidebar-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meeting-perk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #E5E5E5;
+}
+
+.perk-check {
+  color: #22C55E;
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.meeting-sidebar-footer {
+  border-top: 1px solid #262626;
+  padding-top: 20px;
+  font-size: 0.85rem;
+  color: #888888;
+}
+
+.meeting-form-body {
+  padding: 40px 36px;
+}
+
+.meeting-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark-black);
+}
+
+.required-star {
+  color: var(--primary-red);
+}
+
+.form-input-text,
+.form-input-select,
+.form-input-textarea {
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  padding: 12px 14px;
+  border: 1px solid var(--light-border);
+  border-radius: 8px;
+  background-color: #FAFAFA;
+  color: var(--body-text);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.form-input-text:focus,
+.form-input-select:focus,
+.form-input-textarea:focus {
+  background-color: var(--white-bg);
+  border-color: var(--primary-red);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.1);
+}
+
+.form-input-error {
+  border-color: #DC2626 !important;
+  background-color: #FEF2F2 !important;
+}
+
+.field-error-hint {
+  font-size: 0.8rem;
+  color: #DC2626;
+  font-weight: 500;
+}
+
+/* Feedback Status Messages */
+.feedback-banner {
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feedback-banner.success {
+  background-color: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+
+.feedback-banner.demo-notice {
+  background-color: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+.feedback-banner.error {
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #991B1B;
+}
+
+.feedback-banner-title {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feedback-banner-meta {
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   4. Pricing & Plans Section
+   -------------------------------------------------------------------------- */
+.sales-pricing-section {
+  padding: 90px 0;
+  background-color: var(--white-bg);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  max-width: 1140px;
+  margin: 0 auto 40px auto;
+}
+
+.pricing-card {
+  background-color: var(--white-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 16px;
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.09);
+  border-color: rgba(217, 0, 0, 0.3);
+}
+
+.pricing-card.featured {
+  border: 2px solid var(--primary-red);
+  box-shadow: 0 12px 32px rgba(217, 0, 0, 0.1);
+  transform: translateY(-4px);
+}
+
+.pricing-card.featured:hover {
+  transform: translateY(-8px);
+}
+
+.featured-pill {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-red);
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 18px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(217, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+.pricing-plan-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  margin-bottom: 8px;
+}
+
+.pricing-plan-target {
+  font-size: 0.92rem;
+  color: var(--muted-text);
+  min-height: 48px;
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.pricing-price-box {
+  background-color: var(--primary-bg);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+  border: 1px solid var(--light-border);
+}
+
+.pricing-price-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.pricing-price-tag {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--dark-black);
+}
+
+.pricing-features-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--dark-black);
+  margin-bottom: 14px;
+}
+
+.pricing-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.pricing-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--body-text);
+  line-height: 1.45;
+}
+
+.feature-check-icon {
+  color: var(--primary-red);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.pricing-disclaimer {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   5. Request a Quote Section
+   -------------------------------------------------------------------------- */
+.sales-quote-section {
+  padding: 90px 0;
+  background-color: var(--primary-bg);
+}
+
+.quote-card-container {
+  max-width: 920px;
+  margin: 0 auto;
+  background-color: var(--white-bg);
+  border-radius: 16px;
+  border: 1px solid var(--light-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  padding: 44px;
+}
+
+.quote-plan-selector-group {
+  margin-bottom: 24px;
+}
+
+.quote-plan-pills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.quote-plan-pill {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--light-border);
+  background-color: #FAFAFA;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--dark-black);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.quote-plan-pill:hover {
+  border-color: var(--primary-red);
+  background-color: #FFF5F5;
+}
+
+.quote-plan-pill.selected {
+  background-color: var(--primary-red);
+  color: var(--white-bg);
+  border-color: var(--primary-red);
+  box-shadow: 0 4px 12px rgba(217, 0, 0, 0.2);
+}
+
+.modules-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.module-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--dark-black);
+  cursor: pointer;
+  padding: 10px 14px;
+  border: 1px solid var(--light-border);
+  border-radius: 8px;
+  background-color: #FAFAFA;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.module-checkbox-label:hover {
+  background-color: #FFF5F5;
+  border-color: rgba(217, 0, 0, 0.4);
+}
+
+.module-checkbox-label.checked {
+  background-color: #FEF2F2;
+  border-color: var(--primary-red);
+  font-weight: 600;
+}
+
+.module-checkbox-input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-red);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .demo-highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+  }
+  
+  .pricing-card.featured {
+    transform: none;
+  }
+  
+  .pricing-card.featured:hover {
+    transform: translateY(-5px);
+  }
+  
+  .quote-plan-pills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sales-hero {
+    padding: 60px 0 45px 0;
+  }
+  
+  .sales-hero-trust {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .sales-subnav {
+    top: 61px;
+  }
+  
+  .meeting-card-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .meeting-sidebar {
+    padding: 30px 24px;
+  }
+  
+  .meeting-form-body {
+    padding: 30px 20px;
+  }
+  
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .demo-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quote-card-container {
+    padding: 24px 18px;
+  }
+  
+  .modules-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}

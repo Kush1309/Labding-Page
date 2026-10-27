@@ -1,15 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import '../styles/Footer.css'
 
 function Footer() {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 80
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const handleLinkClick = (sectionId) => {
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const offset = 80
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - offset
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+      }
+    } else {
+      navigate(`/#${sectionId}`)
     }
   }
 
@@ -34,22 +41,22 @@ function Footer() {
             <h4 className="footer-title">Quick Links</h4>
             <ul className="footer-links">
               <li>
-                <button onClick={() => scrollToSection('home')} className="footer-link">
+                <button onClick={() => handleLinkClick('home')} className="footer-link">
                   Home
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection('about')} className="footer-link">
+                <button onClick={() => handleLinkClick('about')} className="footer-link">
                   About
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection('schools')} className="footer-link">
+                <button onClick={() => handleLinkClick('schools')} className="footer-link">
                   Our Schools
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection('benefits')} className="footer-link">
+                <button onClick={() => handleLinkClick('benefits')} className="footer-link">
                   Benefits
                 </button>
               </li>
@@ -61,19 +68,19 @@ function Footer() {
             <h4 className="footer-title">Services</h4>
             <ul className="footer-links">
               <li>
-                <button onClick={() => scrollToSection('contact')} className="footer-link">
+                <Link to="/sales" className="footer-link">
                   Sales
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => scrollToSection('contact')} className="footer-link">
+                <button onClick={() => handleLinkClick('contact')} className="footer-link">
                   Services
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection('contact')} className="footer-link">
+                <Link to="/sales#erp-demo" className="footer-link">
                   Request a Demo
-                </button>
+                </Link>
               </li>
               <li>
                 <Link to="/register" className="footer-link">
@@ -90,7 +97,7 @@ function Footer() {
               Get in touch with us through the contact form to discuss your school's needs.
             </p>
             <button 
-              onClick={() => scrollToSection('contact')}
+              onClick={() => handleLinkClick('contact')}
               className="btn-primary btn-footer"
             >
               Contact Us

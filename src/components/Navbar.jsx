@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import '../styles/Navbar.css'
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,8 +24,16 @@ function Navbar() {
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
-      setIsMobileMenuOpen(false)
-      setIsContactDropdownOpen(false)
+    }
+  }
+
+  const handleSectionClick = (sectionId) => {
+    setIsMobileMenuOpen(false)
+    setIsContactDropdownOpen(false)
+    if (location.pathname === '/') {
+      scrollToSection(sectionId)
+    } else {
+      navigate(`/#${sectionId}`)
     }
   }
 
@@ -39,23 +49,33 @@ function Navbar() {
         {/* Desktop Navigation */}
         <div className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>
           <button 
-            onClick={() => scrollToSection('home')}
-            className="nav-link"
+            onClick={() => handleSectionClick('home')}
+            className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
           >
             Home
           </button>
           <button 
-            onClick={() => scrollToSection('about')}
+            onClick={() => handleSectionClick('about')}
             className="nav-link"
           >
             About
           </button>
           <button 
-            onClick={() => scrollToSection('schools')}
+            onClick={() => handleSectionClick('schools')}
             className="nav-link"
           >
             Our Schools
           </button>
+          <Link 
+            to="/sales"
+            onClick={() => {
+              setIsMobileMenuOpen(false)
+              setIsContactDropdownOpen(false)
+            }}
+            className={`nav-link ${location.pathname === '/sales' ? 'active' : ''}`}
+          >
+            Sales
+          </Link>
           
           {/* Contact Dropdown */}
           <div 
@@ -72,15 +92,19 @@ function Navbar() {
             </button>
             {isContactDropdownOpen && (
               <div className="dropdown-menu">
-                <button 
-                  onClick={() => scrollToSection('contact')}
+                <Link 
+                  to="/sales"
+                  onClick={() => {
+                    setIsContactDropdownOpen(false)
+                    setIsMobileMenuOpen(false)
+                  }}
                   className="dropdown-item"
                 >
                   <span className="dropdown-icon">📧</span>
                   Sales
-                </button>
+                </Link>
                 <button 
-                  onClick={() => scrollToSection('contact')}
+                  onClick={() => handleSectionClick('contact')}
                   className="dropdown-item"
                 >
                   <span className="dropdown-icon">💼</span>
