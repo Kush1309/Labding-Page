@@ -45,7 +45,11 @@ function SalesPage() {
   useEffect(() => {
     const sectionIds = ['erp-demo', 'book-meeting', 'pricing-plans', 'request-quote']
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 200
+      const navEl = document.querySelector('.navbar')
+      const subnavEl = document.querySelector('.sales-subnav')
+      const totalHeader = (navEl ? navEl.getBoundingClientRect().height : 80) + (subnavEl ? subnavEl.getBoundingClientRect().height : 54)
+      const scrollPos = window.scrollY + totalHeader + 40
+
       for (const id of sectionIds) {
         const el = document.getElementById(id)
         if (el) {
@@ -66,7 +70,12 @@ function SalesPage() {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const navOffset = 130 // Account for sticky navbar + subnav
+      const navEl = document.querySelector('.navbar')
+      const subnavEl = document.querySelector('.sales-subnav')
+      const navH = navEl ? navEl.getBoundingClientRect().height : 80
+      const subnavH = subnavEl ? subnavEl.getBoundingClientRect().height : 54
+      const navOffset = navH + subnavH + 16
+
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - navOffset
       window.scrollTo({

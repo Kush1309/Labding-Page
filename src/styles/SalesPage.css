@@ -14,9 +14,10 @@
    -------------------------------------------------------------------------- */
 .sales-subnav {
   position: sticky;
-  top: 73px;
-  z-index: 99;
-  background-color: rgba(255, 255, 255, 0.96);
+  top: var(--navbar-height, 80px);
+  z-index: 990;
+  min-height: var(--subnav-height, 54px);
+  background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--light-border);
@@ -27,10 +28,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  min-height: var(--subnav-height, 54px);
+  padding: 8px 20px;
   gap: 16px;
   overflow-x: auto;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .sales-subnav-container::-webkit-scrollbar {
@@ -146,9 +149,10 @@
 .sales-hero {
   background-color: var(--white-bg);
   border-bottom: 1px solid var(--light-border);
-  padding: 90px 0 70px 0;
+  padding: 64px 0 70px 0;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: calc(var(--combined-nav-height, 134px) + 20px);
 }
 
 .sales-hero::before {
@@ -291,6 +295,7 @@
   padding: 90px 0;
   background-color: var(--white-bg);
   border-bottom: 1px solid var(--light-border);
+  scroll-margin-top: calc(var(--combined-nav-height, 134px) + 20px);
 }
 
 .video-player-wrapper {
@@ -479,6 +484,7 @@
   padding: 90px 0;
   background-color: var(--primary-bg);
   border-bottom: 1px solid var(--light-border);
+  scroll-margin-top: calc(var(--combined-nav-height, 134px) + 20px);
 }
 
 .meeting-card-container {
@@ -661,6 +667,7 @@
   padding: 90px 0;
   background-color: var(--white-bg);
   border-bottom: 1px solid var(--light-border);
+  scroll-margin-top: calc(var(--combined-nav-height, 134px) + 20px);
 }
 
 .pricing-grid {
@@ -805,6 +812,7 @@
 .sales-quote-section {
   padding: 90px 0;
   background-color: var(--primary-bg);
+  scroll-margin-top: calc(var(--combined-nav-height, 134px) + 20px);
 }
 
 .quote-card-container {
@@ -922,7 +930,11 @@
 
 @media (max-width: 768px) {
   .sales-hero {
-    padding: 60px 0 45px 0;
+    padding: 40px 0 45px 0;
+  }
+
+  .sales-hero-headline {
+    font-size: clamp(2rem, 5.5vw, 2.6rem);
   }
   
   .sales-hero-trust {
@@ -931,7 +943,17 @@
   }
   
   .sales-subnav {
-    top: 61px;
+    top: var(--navbar-height, 70px);
+    min-height: var(--subnav-height, 52px);
+  }
+
+  .sales-subnav-label {
+    display: none;
+  }
+
+  .sales-subnav-container {
+    padding: 6px 14px;
+    justify-content: flex-start;
   }
   
   .meeting-card-container {
@@ -960,5 +982,21 @@
   
   .modules-checkbox-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sales-subnav {
+    top: var(--navbar-height, 64px);
+    min-height: var(--subnav-height, 48px);
+  }
+
+  .sales-hero {
+    padding: 32px 0 36px 0;
+  }
+
+  .sales-hero-headline {
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+    margin-bottom: 16px;
   }
 }

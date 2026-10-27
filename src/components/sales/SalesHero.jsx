@@ -2,7 +2,7 @@ import React from 'react'
 
 function SalesHero({ onScrollToSection }) {
   return (
-    <section className="sales-hero" aria-labelledby="sales-hero-heading">
+    <section id="sales-hero" className="sales-hero" aria-labelledby="sales-hero-heading">
       <div className="container">
         <div className="sales-hero-inner fade-in-up">
           <div className="sales-badge">

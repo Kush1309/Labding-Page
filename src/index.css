@@ -14,9 +14,28 @@
   --body-text: #292929;
   --muted-text: #666666;
   --light-border: #DEDEDE;
+
+  /* Header & Navigation Dimensions */
+  --navbar-height: 80px;
+  --subnav-height: 54px;
+  --combined-nav-height: calc(var(--navbar-height) + var(--subnav-height));
   
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@media (max-width: 968px) {
+  :root {
+    --navbar-height: 70px;
+    --subnav-height: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --navbar-height: 64px;
+    --subnav-height: 48px;
+  }
 }
 
 html {
