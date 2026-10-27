@@ -5,8 +5,11 @@ function HeroSection() {
   const videoRef = useRef(null)
 
   useEffect(() => {
-    // Handle autoplay gracefully with promise
+    // Safari requires muted and defaultMuted property set directly on the DOM node
     if (videoRef.current) {
+      videoRef.current.muted = true
+      videoRef.current.defaultMuted = true
+      
       const playPromise = videoRef.current.play()
       
       if (playPromise !== undefined) {
@@ -32,7 +35,6 @@ function HeroSection() {
         loop
         muted
         playsInline
-        poster=""
       >
         <source src="/school-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
