@@ -73,9 +73,9 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <button onClick={() => handleLinkClick('contact')} className="footer-link">
+                <Link to="/services" className="footer-link">
                   Services
-                </button>
+                </Link>
               </li>
               <li>
                 <Link to="/sales#erp-demo" className="footer-link">

@@ -76,6 +76,16 @@ function Navbar() {
           >
             Sales
           </Link>
+          <Link 
+            to="/services"
+            onClick={() => {
+              setIsMobileMenuOpen(false)
+              setIsContactDropdownOpen(false)
+            }}
+            className={`nav-link ${location.pathname === '/services' ? 'active' : ''}`}
+          >
+            Services
+          </Link>
           
           {/* Contact Dropdown */}
           <div 
@@ -103,13 +113,17 @@ function Navbar() {
                   <span className="dropdown-icon">📧</span>
                   Sales
                 </Link>
-                <button 
-                  onClick={() => handleSectionClick('contact')}
+                <Link 
+                  to="/services"
+                  onClick={() => {
+                    setIsContactDropdownOpen(false)
+                    setIsMobileMenuOpen(false)
+                  }}
                   className="dropdown-item"
                 >
                   <span className="dropdown-icon">💼</span>
                   Services
-                </button>
+                </Link>
               </div>
             )}
           </div>
