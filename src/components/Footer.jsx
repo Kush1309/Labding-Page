@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import BrandLogo from './common/BrandLogo'
+import BRAND_CONFIG from '../config/brandConfig'
 import '../styles/Footer.css'
 
 function Footer() {
@@ -27,12 +29,16 @@ function Footer() {
           {/* Brand Column */}
           <div className="footer-column">
             <div className="footer-brand">
-              <span className="brand-school">School</span>
-              <span className="brand-erp">ERP</span>
+              <BrandLogo
+                variant="full"
+                size="md"
+                theme="light"
+                showTagline={true}
+                asLink={true}
+              />
             </div>
             <p className="footer-description">
-              Transforming school management with intelligent, connected digital solutions 
-              for administrators, teachers, students and parents.
+              {BRAND_CONFIG.positioning}
             </p>
           </div>
 
@@ -108,7 +114,7 @@ function Footer() {
         {/* Bottom Bar */}
         <div className="footer-bottom">
           <p className="footer-copyright">
-            © {new Date().getFullYear()} School ERP. All rights reserved.
+            © {new Date().getFullYear()} {BRAND_CONFIG.footer.copyrightHolder}. All rights reserved.
           </p>
           <div className="footer-legal">
             <span className="footer-legal-note">Privacy Policy | Terms & Conditions</span>

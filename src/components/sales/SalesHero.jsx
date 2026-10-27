@@ -7,7 +7,7 @@ function SalesHero({ onScrollToSection }) {
         <div className="sales-hero-inner fade-in-up">
           <div className="sales-badge">
             <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: 'var(--primary-red)', display: 'inline-block' }}></span>
-            School ERP Enterprise Edition
+            SAMAGRA Enterprise Edition
           </div>
 
           <h1 id="sales-hero-heading" className="sales-hero-headline">
@@ -15,7 +15,7 @@ function SalesHero({ onScrollToSection }) {
           </h1>
 
           <p className="sales-hero-subtitle">
-            Discover how our School ERP simplifies daily school operations, connects teachers and parents, and helps school administrators manage everything from one intelligent platform.
+            Discover how SAMAGRA simplifies daily school operations, connects teachers and parents, and helps school administrators manage everything from one intelligent platform.
           </p>
 
           <div className="sales-hero-ctas">

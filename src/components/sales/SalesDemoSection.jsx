@@ -35,7 +35,7 @@ function SalesDemoSection({ onScrollToSection }) {
             Interactive Product Tour
           </div>
           <h2 id="demo-heading" className="sales-section-title">
-            See Our School ERP in <span className="highlight">Action</span>
+            See SAMAGRA in <span className="highlight">Action</span>
           </h2>
           <p className="sales-section-desc">
             Explore how our platform simplifies school administration, academic management, fee tracking, attendance, and parent communication.
@@ -49,7 +49,7 @@ function SalesDemoSection({ onScrollToSection }) {
               isYouTube && youtubeEmbedUrl ? (
                 <iframe
                   src={youtubeEmbedUrl}
-                  title="School ERP System Demo"
+                  title="SAMAGRA School ERP System Demo"
                   className="video-frame"
                   allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -77,7 +77,7 @@ function SalesDemoSection({ onScrollToSection }) {
                   </div>
                 </div>
                 <span className="placeholder-tag">Software Walkthrough • 1080p Preview</span>
-                <h3 className="placeholder-heading">Our School ERP Demo Video Is Coming Soon</h3>
+                <h3 className="placeholder-heading">Our SAMAGRA Demo Video Is Coming Soon</h3>
                 <p className="placeholder-subtext">
                   We are preparing a full high-resolution walkthrough of the newest ERP modules. In the meantime, you can experience the system live through a guided session.
                 </p>

@@ -16,7 +16,7 @@ function ServicesHero({ onScrollToServices }) {
           </h1>
 
           <p className="services-hero-subtitle">
-            From student admissions and attendance to examinations, fee management, and parent communication, our School ERP brings essential school operations together in one connected digital platform.
+            From student admissions and attendance to examinations, fee management, and parent communication, SAMAGRA brings essential school operations together in one connected digital platform.
           </p>
 
           <div className="services-hero-ctas">

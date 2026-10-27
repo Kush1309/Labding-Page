@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import BRAND_CONFIG from '../config/brandConfig'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ServicesHero from '../components/services/ServicesHero'
@@ -15,12 +16,12 @@ function ServicesPage() {
 
   // SEO Page Metadata
   useEffect(() => {
-    document.title = 'Our Services | School ERP - Comprehensive Digital Management for Schools'
+    document.title = BRAND_CONFIG.seo.servicesTitle
     const metaDesc = document.querySelector('meta[name="description"]')
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'Discover School ERP digital services: student information, attendance tracking, examination management, fee collection, mobile apps, and analytics.'
+        BRAND_CONFIG.seo.servicesDescription
       )
     }
 

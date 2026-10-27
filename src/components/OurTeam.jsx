@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import ProfileImage from './common/ProfileImage'
+import BRAND_CONFIG from '../config/brandConfig'
 import '../styles/OurTeam.css'
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -65,7 +67,7 @@ const DEVELOPERS = [
     id: 'kushagra',
     name: 'Kushagra Saxena',
     badge: 'SENIOR DEVELOPER',
-    image: '/images/team/kushagra.jpg?v=2',
+    image: BRAND_CONFIG.profile.kushagraPhotoPath || '/images/team/kushagra.jpg',
     imageAlt: 'Kushagra Saxena - Senior Developer',
     animationClass: 'dev-float-diagonal-kushagra',
     intro:
@@ -169,12 +171,11 @@ function OurTeam() {
 
                     {/* Modern framed portrait */}
                     <div className="dev-portrait-card">
-                      <img
+                      <ProfileImage
                         src={dev.image}
                         alt={dev.imageAlt}
+                        initials={dev.name.split(' ').map(n => n[0]).join('')}
                         className="dev-portrait-img"
-                        loading="eager"
-                        decoding="async"
                       />
                     </div>
                   </div>

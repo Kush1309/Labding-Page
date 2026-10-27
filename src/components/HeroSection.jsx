@@ -53,9 +53,9 @@ function HeroSection() {
               <span className="highlight"> Brighter</span> Futures.
             </h1>
             <p className="hero-description">
-              Transform everyday school operations with an intelligent School ERP system that 
+              Transform everyday school operations with SAMAGRA — an intelligent School ERP platform that 
               connects school administrators, teachers, students and parents through one seamless 
-              digital platform.
+              digital ecosystem.
             </p>
             <div className="hero-buttons">
               <button 

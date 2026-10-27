@@ -1,5 +1,5 @@
 /**
- * School ERP — Services Data & Feature Specifications
+ * SAMAGRA — Services Data & Feature Specifications
  * Represents supported core capabilities, integrated tools, and modular configuration.
  */
 

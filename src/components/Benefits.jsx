@@ -126,13 +126,13 @@ function Benefits() {
 
       {/* ── Heading ──────────────────────────────────────────────────────── */}
       <div className="benefits-header">
-        <span className="benefits-label" aria-hidden="true">BENEFITS OF SCHOOL ERP</span>
+        <span className="benefits-label" aria-hidden="true">WHY CHOOSE SAMAGRA</span>
         <h2 id="benefits-heading" className="benefits-title">
           Smarter Schools.{' '}
           <span className="benefits-title-accent">Simpler Management.</span>
         </h2>
         <p className="benefits-subtitle">
-          Discover how our School ERP simplifies daily operations, empowers teachers,
+          Discover how SAMAGRA simplifies daily operations, empowers teachers,
           engages parents, and helps schools grow.
         </p>
         <div className="benefits-underline" aria-hidden="true" />

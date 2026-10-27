@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import BRAND_CONFIG from '../config/brandConfig'
 import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
 import TopSchools from '../components/TopSchools'
@@ -13,6 +14,10 @@ import Footer from '../components/Footer'
 
 function HomePage() {
   const location = useLocation()
+
+  useEffect(() => {
+    document.title = BRAND_CONFIG.seo.siteTitle
+  }, [])
 
   useEffect(() => {
     if (location.hash) {

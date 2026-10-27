@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import BrandLogo from './common/BrandLogo'
 import '../styles/Navbar.css'
 
 function Navbar() {
@@ -41,10 +42,17 @@ function Navbar() {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-container">
         {/* Brand Logo */}
-        <Link to="/" className="navbar-brand">
-          <span className="brand-school">School</span>
-          <span className="brand-erp">ERP</span>
-        </Link>
+        <BrandLogo
+          variant="full"
+          size="md"
+          theme="dark"
+          asLink={true}
+          onClick={() => {
+            setIsMobileMenuOpen(false)
+            setIsContactDropdownOpen(false)
+          }}
+          className="navbar-brand-logo"
+        />
 
         {/* Desktop Navigation */}
         <div className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>

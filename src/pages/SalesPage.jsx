@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import BRAND_CONFIG from '../config/brandConfig'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import SalesHero from '../components/sales/SalesHero'
@@ -16,12 +17,12 @@ function SalesPage() {
 
   // SEO: Update page title and description
   useEffect(() => {
-    document.title = 'Sales & Demo | School ERP - Smarter School Management Platform'
+    document.title = BRAND_CONFIG.seo.salesTitle
     const metaDesc = document.querySelector('meta[name="description"]')
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'Explore School ERP software demo, book a personalized school consultation, compare transparent pricing plans, and request a customized quote for your institution.'
+        BRAND_CONFIG.seo.salesDescription
       )
     }
 

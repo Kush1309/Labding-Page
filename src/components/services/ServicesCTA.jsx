@@ -18,7 +18,7 @@ function ServicesCTA() {
           </h2>
 
           <p className="services-cta-desc">
-            Discover how a connected School ERP can help your school organize daily operations, empower educators, and improve communication.
+            Discover how SAMAGRA can help your school organize daily operations, empower educators, and improve communication.
           </p>
 
           <div className="services-cta-buttons">

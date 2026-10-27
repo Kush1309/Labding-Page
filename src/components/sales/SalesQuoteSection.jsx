@@ -132,7 +132,7 @@ function SalesQuoteSection({ selectedPlan, onSelectPlan }) {
             email: formData.email
           }
         })
-        console.log('[School ERP Demo Mode] Quote Request Payload:', formData)
+        console.log('[SAMAGRA Demo Mode] Quote Request Payload:', formData)
       }, 700)
       return
     }

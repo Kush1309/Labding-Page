@@ -100,7 +100,7 @@ function SalesMeetingSection() {
             email: formData.email
           }
         })
-        console.log('[School ERP Demo Mode] Meeting Request Payload:', formData)
+        console.log('[SAMAGRA Demo Mode] Meeting Request Payload:', formData)
       }, 700)
       return
     }
@@ -173,7 +173,7 @@ function SalesMeetingSection() {
             Let's Discuss Your School's <span className="highlight">Needs</span>
           </h2>
           <p className="sales-section-desc">
-            Schedule a personalized consultation to discover how our School ERP can support your institution.
+            Schedule a personalized consultation to discover how SAMAGRA can support your institution.
           </p>
         </div>
 

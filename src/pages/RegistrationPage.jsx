@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import BrandLogo from '../components/common/BrandLogo'
+import BRAND_CONFIG from '../config/brandConfig'
 import '../styles/RegistrationPage.css'
 
 function RegistrationPage() {
+  useEffect(() => {
+    document.title = BRAND_CONFIG.seo.registerTitle
+    window.scrollTo(0, 0)
+  }, [])
+
   const [formData, setFormData] = useState({
     schoolName: '',
     principalName: '',
@@ -94,8 +101,7 @@ function RegistrationPage() {
       <div className="registration-header">
         <Link to="/" className="back-link">← Back to Home</Link>
         <div className="brand">
-          <span className="brand-school">School</span>
-          <span className="brand-erp">ERP</span>
+          <BrandLogo variant="full" size="md" theme="dark" asLink={false} />
         </div>
       </div>
 
@@ -103,7 +109,7 @@ function RegistrationPage() {
         <div className="registration-content">
           <div className="registration-info">
             <h1>Register Your <span className="highlight">School</span></h1>
-            <p className="mb-3">Join hundreds of schools transforming their management with School ERP.</p>
+            <p className="mb-3">Join hundreds of schools transforming their management with SAMAGRA.</p>
             
             <div className="info-features">
               <div className="info-feature">

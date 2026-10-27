@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="samagraRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF2626"/>
+      <stop offset="100%" stop-color="#D90000"/>
+    </linearGradient>
+    <linearGradient id="samagraDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D3139"/>
+      <stop offset="100%" stop-color="#111111"/>
+    </linearGradient>
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#D90000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Connected Systems Background Grid Arc (Subtle) -->
+  <circle cx="50" cy="50" r="44" stroke="#E5E7EB" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.6"/>
+
+  <!-- Lower Foundation Loop (Deep Black/Slate) - Connected Base -->
+  <path d="M 50 48
+           C 40 48 24 54 24 68
+           C 24 82 40 88 56 88
+           C 72 88 84 78 84 66
+           C 84 56 75 52 64 52
+           C 54 52 46 56 46 63
+           C 46 69 51 73 58 73
+           C 64 73 68 70 70 67"
+        stroke="url(#samagraDark)"
+        stroke-width="8.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"/>
+
+  <!-- Upper Dynamic Arc / Knowledge Wing (Vibrant SAMAGRA Red) -->
+  <path d="M 50 52
+           C 60 52 76 46 76 32
+           C 76 18 60 12 44 12
+           C 28 12 16 22 16 34
+           C 16 44 25 48 36 48
+           C 46 48 54 44 54 37
+           C 54 31 49 27 42 27
+           C 36 27 32 30 30 33"
+        stroke="url(#samagraRed)"
+        stroke-width="8.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        filter="url(#subtleGlow)"
+        fill="none"/>
+
+  <!-- Digital Nexus Interconnect (Center Node) -->
+  <circle cx="50" cy="50" r="5" fill="#D90000"/>
+  <circle cx="50" cy="50" r="2.5" fill="#FFFFFF"/>
+
+  <!-- Top Accent Satellite Node (Innovation / Aspiration) -->
+  <circle cx="76" cy="18" r="3.5" fill="#D90000"/>
+</svg>

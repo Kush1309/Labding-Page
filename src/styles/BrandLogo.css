@@ -1,0 +1,82 @@
+/* SAMAGRA Official Brand Logo Component Styles */
+.samagra-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  user-select: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  line-height: 1;
+}
+
+.samagra-brand-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.samagra-brand-logo:hover {
+  opacity: 0.92;
+}
+
+/* Base Image Sizing & Aspect Ratio */
+.samagra-official-logo-img {
+  display: block;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.samagra-brand-logo:hover .samagra-official-logo-img {
+  transform: scale(1.02);
+}
+
+/* Sizing Modifiers for Horizontal Lockup */
+.samagra-logo-sm .samagra-official-logo-img {
+  height: 38px;
+  max-width: 100%;
+}
+
+.samagra-logo-md .samagra-official-logo-img {
+  height: 48px;
+  max-width: 100%;
+}
+
+.samagra-logo-lg .samagra-official-logo-img {
+  height: 60px;
+  max-width: 100%;
+}
+
+/* Symbol Only Variant */
+.samagra-variant-symbol {
+  height: 44px;
+}
+.samagra-logo-sm .samagra-variant-symbol {
+  height: 32px;
+}
+.samagra-logo-lg .samagra-variant-symbol {
+  height: 56px;
+}
+
+/* Stacked Variant */
+.samagra-variant-stacked {
+  height: 64px;
+}
+.samagra-logo-sm .samagra-variant-stacked {
+  height: 48px;
+}
+.samagra-logo-lg .samagra-variant-stacked {
+  height: 84px;
+}
+
+/* Navbar Specific Spacing */
+.navbar-brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .samagra-logo-md .samagra-official-logo-img {
+    height: 38px;
+  }
+}

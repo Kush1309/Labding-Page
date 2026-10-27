@@ -2,7 +2,7 @@
   "name": "school-erp-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Premium School ERP Landing Page",
+  "description": "SAMAGRA — Intelligent Education Management Platform & School ERP Website",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

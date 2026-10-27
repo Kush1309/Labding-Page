@@ -32,7 +32,7 @@ function ContactSection() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `New School ERP Inquiry from ${formData.fullName} (${formData.schoolName})`,
+          _subject: `New SAMAGRA Inquiry from ${formData.fullName} (${formData.schoolName})`,
           _template: 'table',
           _captcha: 'false',
           'Full Name': formData.fullName,
@@ -80,7 +80,7 @@ function ContactSection() {
           <div className="contact-info">
             <h2>Let's Make Your School <span className="highlight">Smarter</span></h2>
             <p className="contact-description">
-              Discover how School ERP can simplify administration, improve communication 
+              Discover how SAMAGRA can simplify administration, improve communication 
               and create a better school experience.
             </p>
             
