@@ -1,8 +1,38 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 
 function SalesHero({ onScrollToSection }) {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true
+      videoRef.current.muted = true
+      const playPromise = videoRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay fallback smoothly handled by static cream background
+        })
+      }
+    }
+  }, [])
+
   return (
     <section id="sales-hero" className="sales-hero" aria-labelledby="sales-hero-heading">
+      {/* Background Video Animation */}
+      <video
+        ref={videoRef}
+        className="sales-hero-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source src="/videos/samagra-dots.mp4" type="video/mp4" />
+      </video>
+      <div className="sales-hero-video-overlay" aria-hidden="true" />
+
       <div className="container">
         <div className="sales-hero-inner fade-in-up">
           <div className="sales-badge">

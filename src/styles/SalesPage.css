@@ -147,7 +147,7 @@
    1. Sales Hero Section
    -------------------------------------------------------------------------- */
 .sales-hero {
-  background-color: var(--white-bg);
+  background-color: #F8F3E9;
   border-bottom: 1px solid var(--light-border);
   padding: 64px 0 70px 0;
   position: relative;
@@ -155,22 +155,32 @@
   scroll-margin-top: calc(var(--combined-nav-height, 134px) + 20px);
 }
 
-.sales-hero::before {
-  content: '';
+.sales-hero-video {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(217, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
-  pointer-events: none;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: 0;
+  pointer-events: none;
+}
+
+.sales-hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(248, 243, 233, 0.12);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sales-hero::before {
+  display: none;
 }
 
 .sales-hero-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   max-width: 920px;
   margin: 0 auto;
@@ -998,5 +1008,11 @@
   .sales-hero-headline {
     font-size: clamp(1.8rem, 6vw, 2.2rem);
     margin-bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sales-hero-video {
+    display: none;
   }
 }
