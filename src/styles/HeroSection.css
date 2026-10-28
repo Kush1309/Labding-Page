@@ -27,7 +27,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.50);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.78) 0%,
+    rgba(30, 27, 75, 0.65) 50%,
+    rgba(15, 23, 42, 0.82) 100%
+  );
   z-index: 2;
 }
 
@@ -43,73 +48,77 @@
 .hero-content {
   max-width: 900px;
   margin: 0 auto;
-  animation: fadeInUp 0.8s ease-out;
+  animation: fadeInUp 0.7s ease-out;
 }
 
 .hero-title {
-  color: var(--white-bg);
+  color: #FFFFFF;
   font-size: clamp(2.2rem, 5.5vw, 3.8rem);
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 25px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 10px rgba(15, 23, 42, 0.5);
+  letter-spacing: -0.02em;
 }
 
 .hero-title .highlight {
-  color: var(--primary-red);
+  color: #818CF8;
 }
 
 .hero-description {
-  color: rgba(255, 255, 255, 0.95);
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: rgba(241, 245, 249, 0.94);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
   line-height: 1.7;
   margin-bottom: 40px;
   max-width: 750px;
   margin-left: auto;
   margin-right: auto;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 4px rgba(15, 23, 42, 0.4);
 }
 
 .hero-buttons {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .btn-hero {
-  padding: 16px 40px;
-  font-size: 1.05rem;
+  padding: 15px 36px;
+  font-size: 1rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: var(--radius-md, 10px);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   font-family: var(--font-family);
 }
 
 .btn-primary.btn-hero {
-  background-color: var(--primary-red);
+  background-color: var(--primary-indigo);
   color: var(--white-bg);
-  box-shadow: 0 4px 15px rgba(217, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4);
 }
 
 .btn-primary.btn-hero:hover {
-  background-color: #B00000;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(217, 0, 0, 0.4);
+  background-color: var(--primary-indigo-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.5);
 }
 
 .btn-secondary.btn-hero {
-  background-color: transparent;
-  color: var(--white-bg);
-  border: 2px solid var(--white-bg);
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
 }
 
 .btn-secondary.btn-hero:hover {
-  background-color: var(--white-bg);
+  background-color: #FFFFFF;
   color: var(--dark-black);
-  transform: translateY(-3px);
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
 }
 
 /* Animations */

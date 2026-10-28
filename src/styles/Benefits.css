@@ -18,16 +18,16 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SECTION WRAPPER — clean white, matches the rest of the site
+   SECTION WRAPPER — light blue-gray background for visual separation
    ═══════════════════════════════════════════════════════════════════════════ */
 .benefits-section {
   position: relative;
-  background-color: var(--white-bg);            /* ← white, not dark */
+  background-color: var(--primary-bg);
   padding: 90px 0 72px;
   overflow: hidden;
 }
 
-/* Subtle light-grey gradient stripe at the very bottom to ease into next section */
+/* Subtle gradient stripe at bottom to ease into School Days */
 .benefits-section::after {
   content: '';
   position: absolute;
@@ -35,7 +35,7 @@
   left: 0;
   right: 0;
   height: 80px;
-  background: linear-gradient(to bottom, transparent, var(--primary-bg));
+  background: linear-gradient(to bottom, transparent, var(--white-bg));
   pointer-events: none;
 }
 
@@ -49,14 +49,14 @@
   text-align: center;
 }
 
-/* Tiny red uppercase label above heading */
+/* Tiny uppercase label above heading */
 .benefits-label {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 4px;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
-  color: var(--primary-red);
+  color: var(--primary-indigo);
   margin-bottom: 16px;
 }
 
@@ -65,29 +65,29 @@
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 800;
   line-height: 1.15;
-  color: var(--dark-black);                     /* ← dark, not white */
+  color: var(--dark-black);
   margin-bottom: 16px;
   letter-spacing: -0.5px;
 }
 
 .benefits-title-accent {
-  color: var(--primary-red);                    /* ← red accent word */
+  color: var(--primary-indigo);
 }
 
 /* Subtitle — muted grey */
 .benefits-subtitle {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: var(--muted-text);                     /* ← grey, not white */
+  color: var(--muted-text);
   max-width: 600px;
   margin: 0 auto 20px;
 }
 
-/* Short red underline */
+/* Short indigo underline */
 .benefits-underline {
   width: 52px;
   height: 3px;
-  background: var(--primary-red);
+  background: var(--primary-indigo);
   border-radius: 2px;
   margin: 0 auto;
 }
@@ -136,24 +136,24 @@
   flex-shrink: 0;
 }
 
-/* Active — thin red border + premium shadow */
+/* Active — dashboard blue border + soft realistic shadow */
 .ben-card--active {
-  border-color: rgba(217, 0, 0, 0.50);
+  border-color: var(--accent-blue);
   box-shadow:
-    0 0 0 1px rgba(217, 0, 0, 0.18),
-    0 10px 40px rgba(0, 0, 0, 0.18);
+    0 0 0 1px rgba(37, 99, 235, 0.22),
+    0 12px 36px rgba(16, 40, 74, 0.16);
   cursor: default;
 }
 
-/* Inactive hover — light grey border hint */
+/* Inactive hover — subtle border hint */
 .ben-card--inactive:hover {
-  border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  border-color: var(--light-border);
+  box-shadow: 0 4px 16px rgba(16, 40, 74, 0.08);
 }
 
 /* Keyboard focus ring */
 .ben-card:focus-visible {
-  outline: 3px solid var(--primary-red);
+  outline: 3px solid var(--accent-blue);
   outline-offset: 3px;
 }
 
@@ -182,7 +182,7 @@
 }
 
 /* ── Overlay — ONLY on card images for text readability ──────────────────── */
-/* The section itself stays white — only the photo inside gets a dark vignette */
+/* Deep navy tone for harmonious readability */
 .ben-card__overlay {
   position: absolute;
   inset: 0;
@@ -190,24 +190,24 @@
   transition: background var(--ben-transition) var(--ben-ease);
 }
 
-/* Active card — rich gradient so white text is legible */
+/* Active card — rich navy gradient so white text is legible */
 .ben-card--active .ben-card__overlay {
   background: linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.48) 42%,
-    rgba(0, 0, 0, 0.10) 100%
+    rgba(16, 40, 74, 0.92) 0%,
+    rgba(16, 40, 74, 0.52) 44%,
+    rgba(16, 40, 74, 0.10) 100%
   );
 }
 
 /* Inactive card — moderate dimming so thumbnails read as "inactive" */
 .ben-card--inactive .ben-card__overlay {
-  background: rgba(0, 0, 0, 0.42);
+  background: rgba(16, 40, 74, 0.40);
 }
 
 /* Brighten on inactive hover */
 .ben-card--inactive:hover .ben-card__overlay {
-  background: rgba(0, 0, 0, 0.28);
+  background: rgba(16, 40, 74, 0.25);
 }
 
 /* ── Narrow vertical number label (inactive cards) ───────────────────────── */
@@ -258,7 +258,7 @@
   pointer-events: auto;
 }
 
-/* Red numbered badge */
+/* Numbered badge */
 .ben-card__num {
   display: inline-flex;
   align-items: center;
@@ -266,13 +266,14 @@
   width: 44px;
   height: 44px;
   border-radius: 11px;
-  background: var(--primary-red);
+  background: var(--primary-indigo);
   color: #fff;
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 1px;
   flex-shrink: 0;
   margin-bottom: 2px;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
 }
 
 /* White text on active photo */
@@ -323,17 +324,17 @@
 }
 
 .benefits-dot--active {
-  background: var(--primary-red);
+  background: var(--accent-blue);
   width: 28px;
   border-radius: 4px;
 }
 
 .benefits-dot:hover:not(.benefits-dot--active) {
-  background: #bbb;
+  background: #94A3B8;
 }
 
 .benefits-dot:focus-visible {
-  outline: 2px solid var(--primary-red);
+  outline: 2px solid var(--accent-blue);
   outline-offset: 3px;
 }
 

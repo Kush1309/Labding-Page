@@ -14,16 +14,17 @@
 
 .gallery-item {
   position: relative;
-  border-radius: 18px;
+  border-radius: var(--radius-lg, 16px);
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
-  background-color: #0f172a;
+  border: 1px solid var(--light-border);
+  box-shadow: 0 4px 16px rgba(16, 40, 74, 0.06);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  background-color: var(--dark-black);
 }
 
 .gallery-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(16, 40, 74, 0.12);
 }
 
 .gallery-item.large {
@@ -43,33 +44,33 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .gallery-item:hover .gallery-img {
-  transform: scale(1.07);
+  transform: scale(1.05);
 }
 
-/* Gradient scrim for guaranteed readability */
+/* Gradient scrim for guaranteed readability with deep navy tones */
 .gallery-gradient-scrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(15, 23, 42, 0.02) 0%,
-    rgba(15, 23, 42, 0.25) 45%,
-    rgba(15, 23, 42, 0.88) 100%
+    rgba(16, 40, 74, 0.02) 0%,
+    rgba(16, 40, 74, 0.30) 45%,
+    rgba(16, 40, 74, 0.90) 100%
   );
-  transition: background 0.35s ease;
+  transition: background 0.25s ease;
   pointer-events: none;
 }
 
 .gallery-item:hover .gallery-gradient-scrim {
   background: linear-gradient(
     180deg,
-    rgba(15, 23, 42, 0.1) 0%,
-    rgba(15, 23, 42, 0.45) 40%,
-    rgba(15, 23, 42, 0.94) 100%
+    rgba(16, 40, 74, 0.08) 0%,
+    rgba(16, 40, 74, 0.45) 40%,
+    rgba(16, 40, 74, 0.95) 100%
   );
 }
 
@@ -93,19 +94,19 @@
 
 .gallery-badge {
   align-self: flex-start;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #ffffff;
-  background: rgba(217, 0, 0, 0.88);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  padding: 4px 12px;
-  border-radius: 999px;
+  background: rgba(79, 70, 229, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 6px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 10px rgba(217, 0, 0, 0.35);
-  transition: transform 0.3s ease;
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.35);
+  transition: transform 0.2s ease;
 }
 
 .gallery-item:hover .gallery-badge {

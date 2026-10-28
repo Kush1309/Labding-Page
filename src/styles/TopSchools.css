@@ -35,13 +35,13 @@
 .partner-line {
   flex: 0 0 60px;
   height: 2px;
-  background: var(--primary-red);
+  background: var(--light-border);
   border-radius: 2px;
   display: block;
 }
 
 .partner-text {
-  color: var(--primary-red);
+  color: var(--primary-indigo);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 3.5px;
@@ -65,7 +65,7 @@
 }
 
 .title-black { color: var(--dark-black); }
-.title-red   { color: var(--primary-red); }
+.title-red   { color: var(--primary-indigo); }
 
 .section-description {
   max-width: 600px;
@@ -136,27 +136,27 @@
 .school-card {
   flex: 0 0 300px;          /* fixed width — keeps all cards identical */
   background: var(--white-bg);
-  border-radius: 20px;
+  border-radius: var(--radius-lg, 16px);
   border: 1px solid var(--light-border);
   box-shadow:
-    0 2px 8px  rgba(0, 0, 0, 0.06),
-    0 6px 20px rgba(0, 0, 0, 0.07);
+    0 1px 3px rgba(16, 40, 74, 0.04),
+    0 4px 14px rgba(16, 40, 74, 0.05);
   overflow: hidden;
   transition:
-    border-color   0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow     0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    transform      0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-color   0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow     0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform      0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
 }
 
-/* Active / hover — red border + premium shadow + lift */
+/* Active / hover — dashboard indigo border + soft shadow + restrained lift */
 .school-card:hover {
-  border-color: var(--primary-red);
+  border-color: #A5B4FC;
   box-shadow:
-    0 4px 16px rgba(217, 0, 0, 0.14),
-    0 12px 36px rgba(217, 0, 0, 0.18);
-  transform: translateY(-7px);
+    0 4px 12px rgba(15, 23, 42, 0.05),
+    0 14px 28px rgba(79, 70, 229, 0.12);
+  transform: translateY(-5px);
 }
 
 /* ── School image area ────────────────────────────────────────────────────── */
@@ -183,11 +183,11 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-red) 0%, #ff4444 100%);
+  background: linear-gradient(135deg, var(--primary-indigo) 0%, #7C3AED 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 18px rgba(217, 0, 0, 0.28);
+  box-shadow: 0 4px 18px rgba(79, 70, 229, 0.32);
 }
 
 .placeholder-initial {

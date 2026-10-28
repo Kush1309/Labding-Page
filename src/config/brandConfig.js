@@ -14,16 +14,23 @@ export const BRAND_CONFIG = {
   positioning: 'An intelligent, unified education management platform for schools, administrators, teachers, students, and parents.',
   category: 'School ERP',
 
-  // Color Tokens (consistent with design system)
+  // Color Tokens (consistent with live dashboard theme)
   colors: {
+    primaryIndigo: '#4F46E5',
+    primaryIndigoHover: '#4338CA',
     primaryRed: '#D90000',
     primaryRedHover: '#B80000',
-    darkBlack: '#111111',
-    bodyText: '#292929',
-    mutedText: '#666666',
+    darkBlack: '#0F172A',
+    bodyText: '#334155',
+    mutedText: '#64748B',
     whiteBg: '#FFFFFF',
-    lightBorder: '#DEDEDE',
-    primaryBg: '#F1F1F1',
+    lightBorder: '#E2E8F0',
+    primaryBg: '#F8FAFC',
+    accentBlue: '#3B82F6',
+    accentPurple: '#7C3AED',
+    accentGreen: '#10B981',
+    accentOrange: '#EA580C',
+    accentAmber: '#F59E0B',
   },
 
   // Logo Configuration (Using your official brand logo image)
