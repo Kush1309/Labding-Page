@@ -115,6 +115,7 @@ function SalesMeetingSection() {
         },
         body: JSON.stringify({
           _subject: `New Meeting Request: ${formData.schoolName} (${formData.contactPerson})`,
+          _replyto: formData.email,
           'School Name': formData.schoolName,
           'Contact Person': formData.contactPerson,
           'Official Email': formData.email,
@@ -130,7 +131,7 @@ function SalesMeetingSection() {
       if (response.ok) {
         setSubmissionStatus({
           type: 'success',
-          message: `Meeting consultation request submitted successfully! Confirmation sent to ${formData.email}.`
+          message: `Meeting request sent successfully! We will contact you at ${formData.email} after reviewing your request.`
         })
         setFormData({
           schoolName: '',

@@ -147,6 +147,7 @@ function SalesQuoteSection({ selectedPlan, onSelectPlan }) {
         },
         body: JSON.stringify({
           _subject: `New Quote Request: ${formData.schoolName} (${formData.interestedPlan} Plan)`,
+          _replyto: formData.email,
           'School Name': formData.schoolName,
           'Contact Person': formData.contactPerson,
           'Email Address': formData.email,
@@ -163,7 +164,7 @@ function SalesQuoteSection({ selectedPlan, onSelectPlan }) {
       if (response.ok) {
         setQuoteStatus({
           type: 'success',
-          message: `Your customized quote request has been transmitted! A detailed proposal will be sent to ${formData.email}.`
+          message: `Your quote request has been sent successfully! We will contact you at ${formData.email} with a proposal.`
         })
       } else {
         throw new Error('API submission failed')

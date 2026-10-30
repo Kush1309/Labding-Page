@@ -36,23 +36,14 @@ export const SALES_VIDEO_CONFIG = {
  * ----------------------------------------------------------------------------
  * 2. FORM SUBMISSION CONFIGURATION:
  * ----------------------------------------------------------------------------
- * By default, isDemoMode is set to true so that meeting bookings and quote
- * requests run safely on the frontend with validation, informative payload logging,
- * and clear user confirmation without falsely claiming a meeting is confirmed in a
- * calendar when no backend booking service is yet attached.
- * 
- * When you are ready to connect real submissions:
- * 1. Set isDemoMode to false.
- * 2. Provide your backend endpoint URL or FormSubmit endpoint
- *    (e.g., "https://formsubmit.co/ajax/your-email@school.com").
+ * Meeting bookings and quote requests are sent to the configured FormSubmit
+ * recipient. FormSubmit may require the recipient to confirm its activation email.
  */
 export const SALES_FORM_CONFIG = {
-  isDemoMode: true,
+  isDemoMode: false,
   
-  // Optional: Set your form submission endpoint or FormSubmit URL:
-  // e.g. "https://formsubmit.co/ajax/kushagrasaxena0913@gmail.com"
-  submissionApiUrl: "",
+  submissionApiUrl: "https://formsubmit.co/ajax/kushagrasaxena0913@gmail.com",
   
-  // Notification email displayed in demo notes for inquiries:
+  // Contact email shown when a submission cannot be delivered:
   supportEmail: "kushagrasaxena0913@gmail.com"
 }
