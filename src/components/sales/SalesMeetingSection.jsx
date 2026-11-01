@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { SALES_FORM_CONFIG } from '../../config/salesConfig'
+import { submitForm } from '../../services/formSubmission'
 
 function SalesMeetingSection() {
   // Get today's date formatted as YYYY-MM-DD for min date constraint
@@ -82,70 +83,31 @@ function SalesMeetingSection() {
     setIsSubmitting(true)
     setSubmissionStatus(null)
 
-    // Check whether real backend API endpoint is configured
-    const isRealApiConfigured = Boolean(SALES_FORM_CONFIG.submissionApiUrl && !SALES_FORM_CONFIG.isDemoMode)
-
-    if (!isRealApiConfigured) {
-      // Safe, transparent frontend demonstration mode — does NOT falsely claim an active calendar booking
-      setTimeout(() => {
-        setIsSubmitting(false)
-        setSubmissionStatus({
-          type: 'demo',
-          message: `[Frontend Demonstration] Meeting consultation request verified for ${formData.schoolName}!`,
-          details: {
-            person: formData.contactPerson,
-            school: formData.schoolName,
-            date: formData.meetingDate,
-            time: formData.meetingTime,
-            email: formData.email
-          }
-        })
-        console.log('[SAMAGRA Demo Mode] Meeting Request Payload:', formData)
-      }, 700)
-      return
-    }
-
-    // If real API is configured, submit via fetch
     try {
-      const response = await fetch(SALES_FORM_CONFIG.submissionApiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `New Meeting Request: ${formData.schoolName} (${formData.contactPerson})`,
-          _replyto: formData.email,
-          'School Name': formData.schoolName,
-          'Contact Person': formData.contactPerson,
-          'Official Email': formData.email,
-          'Phone Number': formData.phone,
-          'Meeting Date': formData.meetingDate,
-          'Meeting Time': formData.meetingTime,
-          'Student Count': formData.studentCount,
-          'Additional Requirements': formData.additionalRequirements,
-          'Submitted At': new Date().toLocaleString()
-        })
+      await submitForm('meeting', {
+        'School Name': formData.schoolName,
+        'Contact Person': formData.contactPerson,
+        'Official Email': formData.email,
+        'Phone Number': formData.phone,
+        'Meeting Date': formData.meetingDate,
+        'Meeting Time': formData.meetingTime,
+        'Student Count': formData.studentCount,
+        'Additional Requirements': formData.additionalRequirements
       })
-
-      if (response.ok) {
-        setSubmissionStatus({
-          type: 'success',
-          message: `Meeting request sent successfully! We will contact you at ${formData.email} after reviewing your request.`
-        })
-        setFormData({
-          schoolName: '',
-          contactPerson: '',
-          email: '',
-          phone: '',
-          meetingDate: '',
-          meetingTime: '10:00 AM - 11:00 AM',
-          studentCount: '500 - 1,000 Students',
-          additionalRequirements: ''
-        })
-      } else {
-        throw new Error('Server returned an error status')
-      }
+      setSubmissionStatus({
+        type: 'success',
+        message: `Meeting request sent successfully! We will contact you at ${formData.email} after reviewing your request.`
+      })
+      setFormData({
+        schoolName: '',
+        contactPerson: '',
+        email: '',
+        phone: '',
+        meetingDate: '',
+        meetingTime: '10:00 AM - 11:00 AM',
+        studentCount: '500 - 1,000 Students',
+        additionalRequirements: ''
+      })
     } catch (err) {
       setSubmissionStatus({
         type: 'error',

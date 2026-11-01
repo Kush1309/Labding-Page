@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { SALES_FORM_CONFIG } from '../../config/salesConfig'
+import { submitForm } from '../../services/formSubmission'
 
 const ALL_MODULES = [
   'Student Management',
@@ -115,64 +116,41 @@ function SalesQuoteSection({ selectedPlan, onSelectPlan }) {
     setIsSubmitting(true)
     setQuoteStatus(null)
 
-    const isRealApiConfigured = Boolean(SALES_FORM_CONFIG.submissionApiUrl && !SALES_FORM_CONFIG.isDemoMode)
-
-    if (!isRealApiConfigured) {
-      // Safe frontend demo mode — truthful feedback
-      setTimeout(() => {
-        setIsSubmitting(false)
-        setQuoteStatus({
-          type: 'demo',
-          message: `[Frontend Demonstration] Quote request generated for ${formData.schoolName}!`,
-          details: {
-            school: formData.schoolName,
-            plan: formData.interestedPlan,
-            modulesCount: formData.modules.length,
-            contact: formData.contactPerson,
-            email: formData.email
-          }
-        })
-        console.log('[SAMAGRA Demo Mode] Quote Request Payload:', formData)
-      }, 700)
-      return
-    }
-
-    // Real API submission
     try {
-      const response = await fetch(SALES_FORM_CONFIG.submissionApiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `New Quote Request: ${formData.schoolName} (${formData.interestedPlan} Plan)`,
-          _replyto: formData.email,
-          'School Name': formData.schoolName,
-          'Contact Person': formData.contactPerson,
-          'Email Address': formData.email,
-          'Phone Number': formData.phone,
-          'Number of Students': formData.studentCount,
-          'School Type': formData.schoolType,
-          'Interested Plan': formData.interestedPlan,
-          'Required Modules': formData.modules.join(', '),
-          'Additional Message': formData.additionalMessage,
-          'Requested At': new Date().toLocaleString()
-        })
+      await submitForm('quote', {
+        'School Name': formData.schoolName,
+        'Contact Person': formData.contactPerson,
+        'Email Address': formData.email,
+        'Phone Number': formData.phone,
+        'Number of Students': formData.studentCount,
+        'School Type': formData.schoolType,
+        'Interested Plan': formData.interestedPlan,
+        'Required Modules': formData.modules,
+        'Additional Message': formData.additionalMessage
       })
 
-      if (response.ok) {
-        setQuoteStatus({
-          type: 'success',
-          message: `Your quote request has been sent successfully! We will contact you at ${formData.email} with a proposal.`
-        })
-      } else {
-        throw new Error('API submission failed')
-      }
-    } catch (err) {
+      setQuoteStatus({
+        type: 'success',
+        message: `Your quote request has been sent successfully! We will contact you at ${formData.email} with a proposal.`
+      })
+    } catch {
+      const subject = `SAMAGRA quote request - ${formData.schoolName}`
+      const body = [
+        `School: ${formData.schoolName}`,
+        `Contact person: ${formData.contactPerson}`,
+        `Email: ${formData.email}`,
+        `Phone: ${formData.phone}`,
+        `Number of students: ${formData.studentCount}`,
+        `School type: ${formData.schoolType}`,
+        `Interested plan: ${formData.interestedPlan}`,
+        `Required modules: ${formData.modules.join(', ')}`,
+        `Additional message: ${formData.additionalMessage}`
+      ].join('\n')
+
       setQuoteStatus({
         type: 'error',
-        message: `Could not transmit quote request. Please write directly to ${SALES_FORM_CONFIG.supportEmail}.`
+        message: 'The online form could not deliver your request. Send it directly by email instead.',
+        fallbackUrl: `mailto:${SALES_FORM_CONFIG.supportEmail}?${new URLSearchParams({ subject, body })}`
       })
     } finally {
       setIsSubmitting(false)
@@ -402,6 +380,9 @@ function SalesQuoteSection({ selectedPlan, onSelectPlan }) {
                   {quoteStatus.type === 'error' && '⚠️ Attention Required'}
                 </div>
                 <div>{quoteStatus.message}</div>
+                {quoteStatus.fallbackUrl && (
+                  <a href={quoteStatus.fallbackUrl}>Email your quote request to {SALES_FORM_CONFIG.supportEmail}</a>
+                )}
                 {quoteStatus.details && (
                   <div className="feedback-banner-meta">
                     Target Plan: <strong>{quoteStatus.details.plan}</strong> with <strong>{quoteStatus.details.modulesCount} modules</strong> for <strong>{quoteStatus.details.school}</strong>.

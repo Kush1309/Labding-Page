@@ -90,14 +90,25 @@ npm run preview
 └── vite.config.js
 ```
 
-## Backend Integration
+## Form Email Notifications
 
-The contact form and registration form currently use frontend-only demo submissions. To integrate with a real backend:
+The contact/demo request, school registration, quote request, and meeting forms
+submit to the Vercel serverless endpoint at `/api/form-submission`. It sends one
+notification email to `kushagrasaxena0913@gmail.com` after SMTP accepts the
+message. Submissions are not stored in a database.
 
-1. Replace the `setTimeout` simulation in `ContactSection.jsx` with actual API calls
-2. Replace the `setTimeout` simulation in `RegistrationPage.jsx` with actual API calls
-3. Add your API endpoints and handle form submissions properly
-4. Never expose API keys or secrets in frontend code
+Configure these environment variables in the Vercel project settings:
+
+- `GMAIL_USER`: Gmail account used to send notifications
+- `GMAIL_APP_PASSWORD`: Gmail App Password for that account (never use the
+  account's normal password)
+- `ADMIN_NOTIFICATION_EMAIL`: notification recipient; defaults to
+  `kushagrasaxena0913@gmail.com`
+
+Set these variables for each deployment environment and redeploy. Keep them
+server-side; do not prefix them with `VITE_` or add real credentials to the
+repository. Gmail SMTP access and an App Password must be enabled for the sender
+account.
 
 ## Customization
 

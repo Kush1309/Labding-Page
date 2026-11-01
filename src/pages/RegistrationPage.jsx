@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import BrandLogo from '../components/common/BrandLogo'
 import BRAND_CONFIG from '../config/brandConfig'
+import { submitForm } from '../services/formSubmission'
 import '../styles/RegistrationPage.css'
 
 function RegistrationPage() {
@@ -38,54 +39,36 @@ function RegistrationPage() {
     setFormStatus({ type: '', message: '' })
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/kushagrasaxena0913@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `New School Registration: ${formData.schoolName}`,
-          _template: 'table',
-          _captcha: 'false',
-          'School Name': formData.schoolName,
-          'Principal / Administrator': formData.principalName,
-          'Email Address': formData.email,
-          'Phone Number': formData.phone,
-          'School Address': formData.address,
-          'City': formData.city,
-          'State': formData.state,
-          'Pincode': formData.pincode,
-          'Board Affiliation': formData.boardAffiliation,
-          'Student Count': formData.studentCount,
-          'Selected Plan': formData.plan,
-          'Submission Date': new Date().toLocaleString()
-        })
+      await submitForm('registration', {
+        'School Name': formData.schoolName,
+        'Principal / Administrator': formData.principalName,
+        'Email Address': formData.email,
+        'Phone Number': formData.phone,
+        'School Address': formData.address,
+        'City': formData.city,
+        'State': formData.state,
+        'Pincode': formData.pincode,
+        'Board Affiliation': formData.boardAffiliation,
+        'Student Count': formData.studentCount,
+        'Selected Plan': formData.plan
       })
-
-      const data = await response.json()
-
-      if (response.ok) {
-        setFormStatus({
-          type: 'success',
-          message: 'Registration request submitted successfully! Details have been emailed to our team (kushagrasaxena0913@gmail.com).'
-        })
-        setFormData({
-          schoolName: '',
-          principalName: '',
-          email: '',
-          phone: '',
-          address: '',
-          city: '',
-          state: '',
-          pincode: '',
-          boardAffiliation: '',
-          studentCount: '',
-          plan: 'basic'
-        })
-      } else {
-        throw new Error(data.message || 'Submission failed')
-      }
+      setFormStatus({
+        type: 'success',
+        message: 'Registration request submitted successfully! Details have been emailed to our team.'
+      })
+      setFormData({
+        schoolName: '',
+        principalName: '',
+        email: '',
+        phone: '',
+        address: '',
+        city: '',
+        state: '',
+        pincode: '',
+        boardAffiliation: '',
+        studentCount: '',
+        plan: 'basic'
+      })
     } catch (error) {
       setFormStatus({
         type: 'error',

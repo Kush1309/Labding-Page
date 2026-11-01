@@ -36,14 +36,10 @@ export const SALES_VIDEO_CONFIG = {
  * ----------------------------------------------------------------------------
  * 2. FORM SUBMISSION CONFIGURATION:
  * ----------------------------------------------------------------------------
- * Meeting bookings and quote requests are sent to the configured FormSubmit
- * recipient. FormSubmit may require the recipient to confirm its activation email.
+ * Meeting bookings and quote requests are submitted through the server-side
+ * SAMAGRA notification endpoint.
  */
 export const SALES_FORM_CONFIG = {
-  isDemoMode: false,
-  
-  submissionApiUrl: "https://formsubmit.co/ajax/kushagrasaxena0913@gmail.com",
-  
   // Contact email shown when a submission cannot be delivered:
   supportEmail: "kushagrasaxena0913@gmail.com"
 }

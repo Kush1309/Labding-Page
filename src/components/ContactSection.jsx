@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { submitForm } from '../services/formSubmission'
 import '../styles/ContactSection.css'
 
 function ContactSection() {
@@ -25,44 +26,26 @@ function ContactSection() {
     setFormStatus({ type: '', message: '' })
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/kushagrasaxena0913@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `New SAMAGRA Inquiry from ${formData.fullName} (${formData.schoolName})`,
-          _template: 'table',
-          _captcha: 'false',
-          'Full Name': formData.fullName,
-          'School Name': formData.schoolName,
-          'Email Address': formData.email,
-          'Phone Number': formData.phone,
-          'Interested In': formData.interestedIn,
-          'Message': formData.message,
-          'Submission Date': new Date().toLocaleString()
-        })
+      await submitForm('contact', {
+        'Full Name': formData.fullName,
+        'School Name': formData.schoolName,
+        'Email Address': formData.email,
+        'Phone Number': formData.phone,
+        'Interested In': formData.interestedIn,
+        'Message': formData.message
       })
-
-      const data = await response.json()
-
-      if (response.ok) {
-        setFormStatus({
-          type: 'success',
-          message: 'Thank you! Your request has been submitted successfully and sent to kushagrasaxena0913@gmail.com. We will contact you shortly.'
-        })
-        setFormData({
-          fullName: '',
-          schoolName: '',
-          email: '',
-          phone: '',
-          interestedIn: 'sales',
-          message: ''
-        })
-      } else {
-        throw new Error(data.message || 'Submission failed')
-      }
+      setFormStatus({
+        type: 'success',
+        message: 'Thank you! Your request has been submitted successfully. We will contact you shortly.'
+      })
+      setFormData({
+        fullName: '',
+        schoolName: '',
+        email: '',
+        phone: '',
+        interestedIn: 'sales',
+        message: ''
+      })
     } catch (err) {
       setFormStatus({
         type: 'error',
