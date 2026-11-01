@@ -52,7 +52,7 @@
   transform: scale(1.05);
 }
 
-/* Gradient scrim for guaranteed readability with deep navy tones */
+/* Gradient scrim */
 .gallery-gradient-scrim {
   position: absolute;
   inset: 0;
@@ -143,7 +143,6 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* On small cards, provide sleek compact styling */
 .gallery-item.small .gallery-desc {
   opacity: 0.9;
   font-size: 0.82rem;
@@ -173,22 +172,16 @@
 }
 
 /* ─── Mobile Carousel (below 768px) ─────────────────────────────────────── */
+/* Note: show/hide between grid and carousel is handled by React (useIsMobile hook),
+   so no CSS display toggling needed here. */
 
-/* Hide desktop grid on mobile */
+.school-days-section {
+  /* mobile padding override */
+}
+
 @media (max-width: 767px) {
   .school-days-section {
     padding: 55px 0 60px;
-  }
-
-  .gallery-grid {
-    display: none;
-  }
-}
-
-/* Show desktop grid, hide carousel on tablet+ */
-@media (min-width: 768px) {
-  .mobile-carousel-wrapper {
-    display: none;
   }
 }
 
@@ -199,20 +192,19 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  /* Prevent the carousel from causing horizontal page overflow */
   overflow: hidden;
   width: 100%;
 }
 
-/* Scrollable viewport — hides scrollbar */
+/* Scrollable viewport */
 .mobile-carousel-viewport {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;           /* Firefox */
-  -ms-overflow-style: none;        /* IE/Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   cursor: grab;
 }
 
@@ -224,12 +216,11 @@
   display: none;
 }
 
-/* Track — contains all cards side by side */
+/* Track */
 .mobile-carousel-track {
   display: flex;
   gap: 14px;
-  /* Side padding so the active card appears centred */
-  padding: 8px calc((100% - 82vw) / 2) 12px;
+  padding: 8px calc((100% - 80vw) / 2) 12px;
   width: max-content;
 }
 
@@ -268,12 +259,12 @@
 }
 
 .mobile-carousel-card .gallery-title {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin-bottom: 6px;
 }
 
 .mobile-carousel-card .gallery-desc {
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   line-height: 1.5;
   max-width: 100%;
   display: -webkit-box;
@@ -298,7 +289,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.25s ease, width 0.25s ease;
+  transition: background-color 0.25s ease, width 0.25s ease;
   flex-shrink: 0;
 }
 
@@ -306,10 +297,9 @@
   background-color: var(--primary-indigo, #4F46E5);
   width: 22px;
   border-radius: 4px;
-  transform: none;
 }
 
-/* ─── Very small phones (≤ 375px) ────────────────────────────────────────── */
+/* Very small phones (≤ 375px) */
 @media (max-width: 375px) {
   .mobile-carousel-card {
     flex: 0 0 85vw;

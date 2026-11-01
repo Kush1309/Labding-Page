@@ -3,7 +3,6 @@ import '../styles/SchoolDays.css'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // School Days Gallery Data
-// Each item has: id, title, category, description, image, imageAlt, size
 // ─────────────────────────────────────────────────────────────────────────────
 const activities = [
   {
@@ -52,6 +51,26 @@ const activities = [
     size: 'small',
   },
 ]
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Custom hook — true when screen width is below the given breakpoint
+// ─────────────────────────────────────────────────────────────────────────────
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.innerWidth < breakpoint
+  })
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`)
+    const handler = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    setIsMobile(mq.matches)
+    return () => mq.removeEventListener('change', handler)
+  }, [breakpoint])
+
+  return isMobile
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Mobile Carousel
@@ -166,9 +185,39 @@ function MobileCarousel() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Desktop Gallery Grid
+// ─────────────────────────────────────────────────────────────────────────────
+function DesktopGrid() {
+  return (
+    <div className="gallery-grid">
+      {activities.map((activity) => (
+        <div key={activity.id} className={`gallery-item ${activity.size}`}>
+          <div className="gallery-image-wrapper">
+            <img
+              src={activity.image}
+              alt={activity.imageAlt}
+              className="gallery-img"
+              loading={activity.size === 'large' ? 'eager' : 'lazy'}
+            />
+            <div className="gallery-gradient-scrim" />
+            <div className="gallery-content">
+              <span className="gallery-badge">{activity.category}</span>
+              <h3 className="gallery-title">{activity.title}</h3>
+              <p className="gallery-desc">{activity.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Main Component
 // ─────────────────────────────────────────────────────────────────────────────
 function SchoolDays() {
+  const isMobile = useIsMobile(768)
+
   return (
     <section id="about" className="school-days-section">
       <div className="container">
@@ -179,33 +228,8 @@ function SchoolDays() {
           </p>
         </div>
 
-        {/* Desktop / Tablet grid */}
-        <div className="gallery-grid">
-          {activities.map((activity) => (
-            <div
-              key={activity.id}
-              className={`gallery-item ${activity.size}`}
-            >
-              <div className="gallery-image-wrapper">
-                <img
-                  src={activity.image}
-                  alt={activity.imageAlt}
-                  className="gallery-img"
-                  loading={activity.size === 'large' ? 'eager' : 'lazy'}
-                />
-                <div className="gallery-gradient-scrim" />
-                <div className="gallery-content">
-                  <span className="gallery-badge">{activity.category}</span>
-                  <h3 className="gallery-title">{activity.title}</h3>
-                  <p className="gallery-desc">{activity.description}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile carousel (hidden on desktop via CSS) */}
-        <MobileCarousel />
+        {/* Render only ONE layout based on actual screen width */}
+        {isMobile ? <MobileCarousel /> : <DesktopGrid />}
       </div>
     </section>
   )
