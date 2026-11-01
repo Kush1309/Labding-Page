@@ -21,20 +21,16 @@ async function submitToFormspree(formId, fields) {
   try {
     result = JSON.parse(responseBody)
   } catch {
-    throw new Error('Your request reached our team, but the Formspree notification could not be confirmed.')
+    throw new Error('Formspree returned an unexpected response. Please try again.')
   }
 
   if (!response.ok || result.ok !== true) {
-    throw new Error('Your request reached our team, but the Formspree notification could not be delivered.')
+    throw new Error('Formspree could not deliver your request. Please try again.')
   }
 }
 
-export async function submitForm(formId, fields) {
-  if (pendingSubmissions.has(formId)) {
-    return pendingSubmissions.get(formId)
-  }
-
-  const request = fetch('/api/form-submission', {
+async function submitToBackend(formId, fields) {
+  const response = await fetch('/api/form-submission', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,25 +42,43 @@ export async function submitForm(formId, fields) {
       fields
     })
   })
-    .then(async response => {
-      const responseBody = await response.text()
-      let result
+  const responseBody = await response.text()
+  let result
 
-      try {
-        result = JSON.parse(responseBody)
-      } catch {
-        throw new Error('The form service is unavailable. Please contact the website administrator.')
+  try {
+    result = JSON.parse(responseBody)
+  } catch {
+    throw new Error('The existing server notification returned an unexpected response.')
+  }
+
+  if (!response.ok || result.success !== true) {
+    throw new Error(result.message || 'The existing server notification could not be delivered.')
+  }
+
+  return result
+}
+
+export async function submitForm(formId, fields) {
+  if (pendingSubmissions.has(formId)) {
+    return pendingSubmissions.get(formId)
+  }
+
+  const request = Promise.allSettled([
+    submitToBackend(formId, fields),
+    submitToFormspree(formId, fields)
+  ])
+    .then(([backendResult, formspreeResult]) => {
+      if (backendResult.status === 'rejected') {
+        console.warn('[form-submission] Existing server notification failed; Formspree was attempted.', backendResult.reason)
       }
 
-      if (!response.ok || result.success !== true) {
-        throw new Error(result.message || 'Form submission could not be delivered.')
+      if (formspreeResult.status === 'rejected') {
+        throw formspreeResult.reason
       }
 
-      return result
-    })
-    .then(async result => {
-      await submitToFormspree(formId, fields)
-      return result
+      return backendResult.status === 'fulfilled'
+        ? backendResult.value
+        : { success: true }
     })
     .finally(() => pendingSubmissions.delete(formId))
 
