@@ -1,7 +1,15 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/register",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/sales",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/services",
       "destination": "/index.html"
     }
   ],

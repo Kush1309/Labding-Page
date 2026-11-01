@@ -72,7 +72,7 @@ function RegistrationPage() {
     } catch (error) {
       setFormStatus({
         type: 'error',
-        message: 'Could not submit registration. Please check your network or email directly to kushagrasaxena0913@gmail.com'
+        message: error.message || 'Could not submit registration. Please try again or email kushagrasaxena0913@gmail.com directly.'
       })
     } finally {
       setIsSubmitting(false)

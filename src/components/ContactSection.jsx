@@ -49,7 +49,7 @@ function ContactSection() {
     } catch (err) {
       setFormStatus({
         type: 'error',
-        message: 'Could not send inquiry. Please try again or reach out directly at kushagrasaxena0913@gmail.com'
+        message: err.message || 'Could not send inquiry. Please try again or email kushagrasaxena0913@gmail.com directly.'
       })
     } finally {
       setIsSubmitting(false)

@@ -133,7 +133,7 @@ function SalesQuoteSection({ selectedPlan, onSelectPlan }) {
         type: 'success',
         message: `Your quote request has been sent successfully! We will contact you at ${formData.email} with a proposal.`
       })
-    } catch {
+    } catch (error) {
       const subject = `SAMAGRA quote request - ${formData.schoolName}`
       const body = [
         `School: ${formData.schoolName}`,
@@ -149,7 +149,7 @@ function SalesQuoteSection({ selectedPlan, onSelectPlan }) {
 
       setQuoteStatus({
         type: 'error',
-        message: 'The online form could not deliver your request. Send it directly by email instead.',
+        message: `${error.message || 'The online form could not deliver your request.'} You can also send it directly by email.`,
         fallbackUrl: `mailto:${SALES_FORM_CONFIG.supportEmail}?${new URLSearchParams({ subject, body })}`
       })
     } finally {

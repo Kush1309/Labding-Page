@@ -118,7 +118,10 @@ module.exports = async function formSubmission(req, res) {
   const configuration = getEmailConfiguration()
   if (!configuration) {
     console.error('[form-submission] Gmail SMTP environment variables are not configured.')
-    return res.status(503).json({ success: false, message: 'Email delivery is temporarily unavailable.' })
+    return res.status(503).json({
+      success: false,
+      message: 'Form email notifications are not configured on the server. Please contact the website administrator.'
+    })
   }
 
   idempotencyKeys.set(submissionId, now + IDEMPOTENCY_TTL_MS)

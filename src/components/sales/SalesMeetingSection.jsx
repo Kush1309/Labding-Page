@@ -111,7 +111,7 @@ function SalesMeetingSection() {
     } catch (err) {
       setSubmissionStatus({
         type: 'error',
-        message: `Could not send meeting request. Please contact ${SALES_FORM_CONFIG.supportEmail} directly.`
+        message: `${err.message || 'Could not send meeting request.'} Contact ${SALES_FORM_CONFIG.supportEmail} directly if the issue continues.`
       })
     } finally {
       setIsSubmitting(false)

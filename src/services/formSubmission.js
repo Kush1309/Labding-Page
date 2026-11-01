@@ -18,7 +18,14 @@ export async function submitForm(formId, fields) {
     })
   })
     .then(async response => {
-      const result = await response.json()
+      const responseBody = await response.text()
+      let result
+
+      try {
+        result = JSON.parse(responseBody)
+      } catch {
+        throw new Error('The form service is unavailable. Please contact the website administrator.')
+      }
 
       if (!response.ok || result.success !== true) {
         throw new Error(result.message || 'Form submission could not be delivered.')
