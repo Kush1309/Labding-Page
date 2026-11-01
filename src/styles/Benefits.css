@@ -1,8 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    Benefits Section  — Benefits.css
    Horizontal accordion-style image carousel — WHITE THEME
-   Brand: --primary-red #D90000 | --dark-black #111111 | --white-bg #FFFFFF
-          --primary-bg #F1F1F1  | --light-border #DEDEDE | --muted-text #666
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── CSS tokens ─────────────────────────────────────────────────────────── */
@@ -18,7 +16,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SECTION WRAPPER — light blue-gray background for visual separation
+   SECTION WRAPPER
    ═══════════════════════════════════════════════════════════════════════════ */
 .benefits-section {
   position: relative;
@@ -27,7 +25,6 @@
   overflow: hidden;
 }
 
-/* Subtle gradient stripe at bottom to ease into School Days */
 .benefits-section::after {
   content: '';
   position: absolute;
@@ -49,7 +46,6 @@
   text-align: center;
 }
 
-/* Tiny uppercase label above heading */
 .benefits-label {
   display: inline-block;
   font-size: 0.75rem;
@@ -60,7 +56,6 @@
   margin-bottom: 16px;
 }
 
-/* Main heading — dark text on white */
 .benefits-title {
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 800;
@@ -74,7 +69,6 @@
   color: var(--primary-indigo);
 }
 
-/* Subtitle — muted grey */
 .benefits-subtitle {
   font-size: 1.05rem;
   line-height: 1.7;
@@ -83,7 +77,6 @@
   margin: 0 auto 20px;
 }
 
-/* Short indigo underline */
 .benefits-underline {
   width: 52px;
   height: 3px;
@@ -93,8 +86,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   CAROUSEL TRACK  (CSS-Grid accordion)
-   Each inactive card is fixed-width; the :has() rules expand the active one.
+   DESKTOP CAROUSEL TRACK  (CSS-Grid accordion)
    ═══════════════════════════════════════════════════════════════════════════ */
 .benefits-carousel {
   display: grid;
@@ -107,7 +99,7 @@
   transition: grid-template-columns var(--ben-transition) var(--ben-ease);
 }
 
-/* Active-card column expansion — one rule per position */
+/* Active-card column expansion */
 .benefits-carousel:has(.ben-card:nth-child(1).ben-card--active) { grid-template-columns: var(--ben-card-active-w) repeat(7, var(--ben-card-inactive-w)); }
 .benefits-carousel:has(.ben-card:nth-child(2).ben-card--active) { grid-template-columns: var(--ben-card-inactive-w) var(--ben-card-active-w) repeat(6, var(--ben-card-inactive-w)); }
 .benefits-carousel:has(.ben-card:nth-child(3).ben-card--active) { grid-template-columns: repeat(2, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(5, var(--ben-card-inactive-w)); }
@@ -118,13 +110,13 @@
 .benefits-carousel:has(.ben-card:nth-child(8).ben-card--active) { grid-template-columns: repeat(7, var(--ben-card-inactive-w)) var(--ben-card-active-w); }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   INDIVIDUAL CARD
+   INDIVIDUAL DESKTOP CARD
    ═══════════════════════════════════════════════════════════════════════════ */
 .ben-card {
   position: relative;
   height: 100%;
   padding: 0;
-  background: #e8e8e8;                          /* subtle grey fallback */
+  background: #e8e8e8;
   border-radius: var(--ben-radius);
   overflow: hidden;
   cursor: pointer;
@@ -136,7 +128,6 @@
   flex-shrink: 0;
 }
 
-/* Active — dashboard blue border + soft realistic shadow */
 .ben-card--active {
   border-color: var(--accent-blue);
   box-shadow:
@@ -145,19 +136,16 @@
   cursor: default;
 }
 
-/* Inactive hover — subtle border hint */
 .ben-card--inactive:hover {
   border-color: var(--light-border);
   box-shadow: 0 4px 16px rgba(16, 40, 74, 0.08);
 }
 
-/* Keyboard focus ring */
 .ben-card:focus-visible {
   outline: 3px solid var(--accent-blue);
   outline-offset: 3px;
 }
 
-/* ── Card photo ───────────────────────────────────────────────────────────── */
 .ben-card__img {
   position: absolute;
   inset: 0;
@@ -171,18 +159,9 @@
   -webkit-user-drag: none;
 }
 
-/* Slight scale on active — feels alive */
-.ben-card--active .ben-card__img {
-  transform: scale(1.03);
-}
+.ben-card--active .ben-card__img  { transform: scale(1.03); }
+.ben-card--inactive:hover .ben-card__img { transform: scale(1.06); }
 
-/* Micro-zoom on hover of inactive card */
-.ben-card--inactive:hover .ben-card__img {
-  transform: scale(1.06);
-}
-
-/* ── Overlay — ONLY on card images for text readability ──────────────────── */
-/* Deep navy tone for harmonious readability */
 .ben-card__overlay {
   position: absolute;
   inset: 0;
@@ -190,7 +169,6 @@
   transition: background var(--ben-transition) var(--ben-ease);
 }
 
-/* Active card — rich navy gradient so white text is legible */
 .ben-card--active .ben-card__overlay {
   background: linear-gradient(
     0deg,
@@ -200,17 +178,9 @@
   );
 }
 
-/* Inactive card — moderate dimming so thumbnails read as "inactive" */
-.ben-card--inactive .ben-card__overlay {
-  background: rgba(16, 40, 74, 0.40);
-}
+.ben-card--inactive .ben-card__overlay   { background: rgba(16, 40, 74, 0.40); }
+.ben-card--inactive:hover .ben-card__overlay { background: rgba(16, 40, 74, 0.25); }
 
-/* Brighten on inactive hover */
-.ben-card--inactive:hover .ben-card__overlay {
-  background: rgba(16, 40, 74, 0.25);
-}
-
-/* ── Narrow vertical number label (inactive cards) ───────────────────────── */
 .ben-card__narrow-label {
   position: absolute;
   inset: 0;
@@ -231,7 +201,6 @@
   transform: rotate(180deg);
 }
 
-/* ── Active card content (title + desc overlaid on photo) ────────────────── */
 .ben-card__content {
   position: absolute;
   bottom: 0;
@@ -243,8 +212,6 @@
   align-items: flex-start;
   gap: 10px;
   pointer-events: none;
-
-  /* Invisible by default — slides up when active */
   opacity: 0;
   transform: translateY(16px);
   transition:
@@ -258,7 +225,6 @@
   pointer-events: auto;
 }
 
-/* Numbered badge */
 .ben-card__num {
   display: inline-flex;
   align-items: center;
@@ -276,7 +242,6 @@
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
 }
 
-/* White text on active photo */
 .ben-card__title {
   font-size: clamp(1.1rem, 1.6vw, 1.45rem);
   font-weight: 700;
@@ -296,7 +261,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   DOT PROGRESS INDICATORS — adapted to white background
+   DOT PROGRESS INDICATORS (desktop)
    ═══════════════════════════════════════════════════════════════════════════ */
 .benefits-dots {
   display: flex;
@@ -313,7 +278,7 @@
   height: 8px;
   border-radius: 50%;
   border: none;
-  background: var(--light-border);              /* ← grey on white bg */
+  background: var(--light-border);
   cursor: pointer;
   padding: 0;
   transition:
@@ -329,9 +294,7 @@
   border-radius: 4px;
 }
 
-.benefits-dot:hover:not(.benefits-dot--active) {
-  background: #94A3B8;
-}
+.benefits-dot:hover:not(.benefits-dot--active) { background: #94A3B8; }
 
 .benefits-dot:focus-visible {
   outline: 2px solid var(--accent-blue);
@@ -339,12 +302,8 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
+   DESKTOP RESPONSIVE BREAKPOINTS
    ═══════════════════════════════════════════════════════════════════════════ */
-
-/* Large desktop — no changes, defaults work */
-
-/* Tablet landscape */
 @media (max-width: 1200px) {
   :root {
     --ben-card-height:     460px;
@@ -354,7 +313,6 @@
   .benefits-carousel { padding: 0 24px; }
 }
 
-/* Tablet portrait */
 @media (max-width: 900px) {
   :root {
     --ben-card-height:     400px;
@@ -363,43 +321,244 @@
   }
   .benefits-section   { padding: 70px 0 56px; }
   .benefits-header    { margin-bottom: 38px; }
-  .benefits-carousel  { padding: 0 16px; overflow-x: auto; }
+  .benefits-carousel  { padding: 0 16px; }
   .ben-card__desc     { display: none; }
 }
 
-/* Mobile */
-@media (max-width: 640px) {
-  :root {
-    --ben-card-height:     340px;
-    --ben-card-inactive-w: 40px;
-    --ben-gap: 6px;
-    --ben-radius: 14px;
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE SWIPEABLE CAROUSEL  (< 768px — rendered via React, not CSS toggle)
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .benefits-section {
+    padding: 56px 0 50px;
+    overflow: hidden;
   }
-
-  .benefits-section { padding: 56px 0 44px; }
-  .benefits-header  { margin-bottom: 28px; }
-
-  .benefits-carousel { padding: 0 10px; }
-
-  .ben-card__content { padding: 18px 14px 16px; gap: 7px; }
-  .ben-card__title   { font-size: 0.97rem; }
-  .ben-card__desc    { display: none; }
-
-  .ben-card__num {
-    width: 36px; height: 36px;
-    border-radius: 9px;
-    font-size: 0.68rem;
+  .benefits-header {
+    margin-bottom: 28px;
+    padding: 0 20px;
   }
+}
 
-  /* Column rules need !important to override the desktop ones on mobile */
-  .benefits-carousel:has(.ben-card:nth-child(1).ben-card--active) { grid-template-columns: var(--ben-card-active-w) repeat(7, var(--ben-card-inactive-w)) !important; }
-  .benefits-carousel:has(.ben-card:nth-child(2).ben-card--active) { grid-template-columns: var(--ben-card-inactive-w) var(--ben-card-active-w) repeat(6, var(--ben-card-inactive-w)) !important; }
-  .benefits-carousel:has(.ben-card:nth-child(3).ben-card--active) { grid-template-columns: repeat(2, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(5, var(--ben-card-inactive-w)) !important; }
-  .benefits-carousel:has(.ben-card:nth-child(4).ben-card--active) { grid-template-columns: repeat(3, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(4, var(--ben-card-inactive-w)) !important; }
-  .benefits-carousel:has(.ben-card:nth-child(5).ben-card--active) { grid-template-columns: repeat(4, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(3, var(--ben-card-inactive-w)) !important; }
-  .benefits-carousel:has(.ben-card:nth-child(6).ben-card--active) { grid-template-columns: repeat(5, var(--ben-card-inactive-w)) var(--ben-card-active-w) repeat(2, var(--ben-card-inactive-w)) !important; }
-  .benefits-carousel:has(.ben-card:nth-child(7).ben-card--active) { grid-template-columns: repeat(6, var(--ben-card-inactive-w)) var(--ben-card-active-w) var(--ben-card-inactive-w) !important; }
-  .benefits-carousel:has(.ben-card:nth-child(8).ben-card--active) { grid-template-columns: repeat(7, var(--ben-card-inactive-w)) var(--ben-card-active-w) !important; }
+/* Outer wrapper — clips overflow so page doesn't scroll horizontally */
+.ben-mobile-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Scrollable viewport */
+.ben-mobile-viewport {
+  width: 100%;
+  overflow: hidden;          /* viewport clips; track scrolls programmatically */
+}
+
+/* Track — flex row, scroll is driven by JS scrollTo on the track element */
+.ben-mobile-track {
+  display: flex;
+  gap: 12px;
+  /* Side padding centres the active card */
+  padding: 6px calc((100% - 80vw) / 2) 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ben-mobile-track::-webkit-scrollbar { display: none; }
+
+/* Individual mobile card */
+.ben-mobile-card {
+  flex: 0 0 80vw;
+  max-width: 340px;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  position: relative;
+  background: #e8e8e8;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 16px rgba(16, 40, 74, 0.08);
+  transition:
+    transform   0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity     0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow  0.4s ease,
+    border-color 0.4s ease;
+  opacity: 0.55;
+  transform: scale(0.93);
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.ben-mobile-card--active {
+  opacity: 1;
+  transform: scale(1);
+  border-color: var(--accent-blue, #2563EB);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.20),
+    0 14px 36px rgba(16, 40, 74, 0.18);
+  cursor: default;
+}
+
+/* Full-bleed image */
+.ben-mobile-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ben-mobile-card--active .ben-mobile-img { transform: scale(1.04); }
+
+/* Gradient overlay */
+.ben-mobile-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background 0.4s ease;
+  background: rgba(16, 40, 74, 0.38);
+}
+
+.ben-mobile-card--active .ben-mobile-overlay {
+  background: linear-gradient(
+    0deg,
+    rgba(16, 40, 74, 0.92) 0%,
+    rgba(16, 40, 74, 0.50) 50%,
+    rgba(16, 40, 74, 0.10) 100%
+  );
+}
+
+/* Narrow number on inactive */
+.ben-mobile-narrow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 16px;
+  pointer-events: none;
+}
+
+.ben-mobile-narrow-num {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 1.5px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+/* Content overlay — slides up when active */
+.ben-mobile-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity   0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ben-mobile-content--show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Number badge */
+.ben-mobile-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--primary-indigo, #4F46E5);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+
+.ben-mobile-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.ben-mobile-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.55;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+/* Mobile dots */
+.ben-mobile-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.ben-mobile-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: #CBD5E1;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background    0.3s ease,
+    width         0.3s ease,
+    border-radius 0.3s ease;
+  flex-shrink: 0;
+}
+
+.ben-mobile-dot--active {
+  background: var(--primary-indigo, #4F46E5);
+  width: 22px;
+  border-radius: 4px;
+}
+
+/* Very small phones */
+@media (max-width: 375px) {
+  .ben-mobile-card {
+    flex: 0 0 86vw;
+    height: 270px;
+  }
+  .ben-mobile-track {
+    padding-left:  calc((100% - 86vw) / 2);
+    padding-right: calc((100% - 86vw) / 2);
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -411,7 +570,12 @@
   .ben-card__content,
   .ben-card__overlay,
   .benefits-dot,
-  .benefits-carousel {
+  .benefits-carousel,
+  .ben-mobile-card,
+  .ben-mobile-img,
+  .ben-mobile-content,
+  .ben-mobile-overlay,
+  .ben-mobile-dot {
     transition: none !important;
     animation:  none !important;
   }
