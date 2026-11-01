@@ -4,6 +4,7 @@
   position: relative;
 }
 
+/* ─── Desktop / Tablet Grid ─────────────────────────────────────────────── */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -152,7 +153,7 @@
   overflow: hidden;
 }
 
-/* Tablet Responsive */
+/* ─── Tablet (768px – 1024px) ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -171,44 +172,152 @@
   }
 }
 
-/* Mobile Responsive */
-@media (max-width: 640px) {
+/* ─── Mobile Carousel (below 768px) ─────────────────────────────────────── */
+
+/* Hide desktop grid on mobile */
+@media (max-width: 767px) {
   .school-days-section {
-    padding: 60px 0;
+    padding: 55px 0 60px;
   }
 
   .gallery-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 16px;
-    margin-top: 25px;
+    display: none;
+  }
+}
+
+/* Show desktop grid, hide carousel on tablet+ */
+@media (min-width: 768px) {
+  .mobile-carousel-wrapper {
+    display: none;
+  }
+}
+
+/* Carousel wrapper */
+.mobile-carousel-wrapper {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  /* Prevent the carousel from causing horizontal page overflow */
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Scrollable viewport — hides scrollbar */
+.mobile-carousel-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;        /* IE/Edge */
+  cursor: grab;
+}
+
+.mobile-carousel-viewport:active {
+  cursor: grabbing;
+}
+
+.mobile-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+/* Track — contains all cards side by side */
+.mobile-carousel-track {
+  display: flex;
+  gap: 14px;
+  /* Side padding so the active card appears centred */
+  padding: 8px calc((100% - 82vw) / 2) 12px;
+  width: max-content;
+}
+
+/* Individual card */
+.mobile-carousel-card {
+  flex: 0 0 80vw;
+  max-width: 340px;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  position: relative;
+  background-color: var(--dark-black);
+  border: 1px solid var(--light-border);
+  box-shadow: 0 4px 16px rgba(16, 40, 74, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  opacity: 0.62;
+  transform: scale(0.95);
+  cursor: pointer;
+  outline: none;
+}
+
+.mobile-carousel-card.active {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 12px 36px rgba(16, 40, 74, 0.18);
+}
+
+.mobile-carousel-card .gallery-image-wrapper {
+  height: 100%;
+}
+
+.mobile-carousel-card .gallery-content {
+  padding: 20px;
+  pointer-events: none;
+}
+
+.mobile-carousel-card .gallery-title {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.mobile-carousel-card .gallery-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Dot indicators */
+.mobile-carousel-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #CBD5E1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease, width 0.25s ease;
+  flex-shrink: 0;
+}
+
+.carousel-dot.active {
+  background-color: var(--primary-indigo, #4F46E5);
+  width: 22px;
+  border-radius: 4px;
+  transform: none;
+}
+
+/* ─── Very small phones (≤ 375px) ────────────────────────────────────────── */
+@media (max-width: 375px) {
+  .mobile-carousel-card {
+    flex: 0 0 85vw;
+    height: 280px;
   }
 
-  .gallery-item,
-  .gallery-item.large,
-  .gallery-item.small {
-    grid-column: span 1;
-    grid-row: span 1;
-    min-height: 260px;
-    border-radius: 14px;
-  }
-
-  .gallery-item.large {
-    min-height: 290px;
-  }
-
-  .gallery-content,
-  .gallery-item.large .gallery-content {
-    padding: 18px;
-  }
-
-  .gallery-title,
-  .gallery-item.large .gallery-title {
-    font-size: 1.25rem;
-  }
-
-  .gallery-desc,
-  .gallery-item.large .gallery-desc {
-    font-size: 0.85rem;
+  .mobile-carousel-track {
+    padding-left: calc((100% - 85vw) / 2);
+    padding-right: calc((100% - 85vw) / 2);
   }
 }
